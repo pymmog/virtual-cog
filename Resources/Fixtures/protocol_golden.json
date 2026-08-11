@@ -1,0 +1,21 @@
+{
+  "hub_riding_data_hex": "0308be01105018bd06200028e2ba01308beb01",
+  "expected": {
+    "power": 190,
+    "cadence": 80,
+    "speed_x100": 829,
+    "hr": 0
+  },
+  "simulation_defaults": {
+    "cwa": 5100,
+    "crr": 400,
+    "wind": 0
+  },
+  "aes_ccm": {
+    "key_hex": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+    "nonce_suffix_hex": "aabbccdd",
+    "counter_le_hex": "01000000",
+    "plaintext_hex": "3708001001",
+    "note": "Golden ciphertext filled by Scripts/generate_ccm_vector.py"
+  }
+}
