@@ -1,0 +1,97 @@
+syntax = "proto2";
+
+// Reverse-engineered Zwift BLE protobuf stubs for Click / Hub trainers.
+// Unofficial interoperability research — not provided by Zwift Inc.
+// Opcodes are prepended outside the protobuf payload.
+
+package virtualcog.zwift;
+
+//---------------- Zwift Play / Click button status
+
+enum PlayButtonStatus {
+  ON = 0;
+  OFF = 1;
+}
+
+// Opcode 0x07
+message PlayKeyPadStatus {
+  optional PlayButtonStatus RightPad = 1;
+  optional PlayButtonStatus Button_Y_Up = 2;
+  optional PlayButtonStatus Button_Z_Left = 3;
+  optional PlayButtonStatus Button_A_Right = 4;
+  optional PlayButtonStatus Button_B_Down = 5;
+  optional PlayButtonStatus Button_Shift = 6;
+  optional PlayButtonStatus Button_On = 7;
+  optional sint32 Analog_LR = 8;
+  optional sint32 Analog_UD = 9;
+}
+
+message PlayCommandParameters {
+  optional uint32 param1 = 1;
+  optional uint32 param2 = 2;
+  optional uint32 HapticPattern = 3;
+}
+
+message PlayCommandContents {
+  optional PlayCommandParameters CommandParameters = 1;
+}
+
+// Opcode 0x12 — haptic / vibration
+message PlayCommand {
+  optional PlayCommandContents CommandContents = 2;
+}
+
+// Opcode 0x15 / 0x19 — idle keepalive
+message Idle {
+  optional uint32 Unknown2 = 2;
+}
+
+//---------------- Zwift Click
+
+// Opcode 0x37
+message ClickKeyPadStatus {
+  optional PlayButtonStatus Button_Plus = 1;
+  optional PlayButtonStatus Button_Minus = 2;
+}
+
+//---------------- Zwift Hub trainer (KICKR CORE 2 native VS path)
+
+// Opcode 0x03 — periodic riding telemetry
+message HubRidingData {
+  optional uint32 Power = 1;
+  optional uint32 Cadence = 2;
+  optional uint32 SpeedX100 = 3;
+  optional uint32 HR = 4;
+  optional uint32 Unknown1 = 5;
+  optional uint32 Unknown2 = 6;
+}
+
+message SimulationParam {
+  // Wind in m/s * 100. Zwift often fixes to 0. Negative = tailwind.
+  optional sint32 Wind = 1;
+  // Grade percent * 100.
+  optional sint32 InclineX100 = 2;
+  // CdA * 10000. Zwift-like default ≈ 5100 (0.51).
+  optional uint32 CWa = 3;
+  // Rolling resistance * 100000. Zwift-like default ≈ 400 (0.004).
+  optional uint32 Crr = 4;
+}
+
+message PhysicalParam {
+  // Virtual gear ratio * 10000.
+  optional uint32 GearRatioX10000 = 2;
+  optional uint32 BikeWeightx100 = 4;
+  optional uint32 RiderWeightx100 = 5;
+}
+
+// Opcode 0x04 — trainer control
+message HubCommand {
+  optional uint32 PowerTarget = 3;
+  optional SimulationParam Simulation = 4;
+  optional PhysicalParam Physical = 5;
+}
+
+// Opcode 0x00 — info queries (e.g. gear-ratio probe 520)
+message HubInfoRequest {
+  optional uint32 QueryId = 1;
+}

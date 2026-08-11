@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14E76E48F0B7D0F262741FF3 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104CC0B38BE3DC4718CA12B /* AppModel.swift */; };
+		D11CD1BD21B2F6962484FED2 /* VirtualCogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */; };
+		0D70B4A1F7530F95327DD5BB /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDB9DB702044AD7803A081 /* BleManager.swift */; };
+		D48927E5F103D009D9F545E3 /* PeripheralDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */; };
+		FC50A3480C878C5B15E84F48 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E16A7C9060C9B3EB69096D /* GPXParser.swift */; };
+		57D00E02C1790860CE4CD603 /* ClickClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158558E3A0151D6E2F913FA6 /* ClickClient.swift */; };
+		EE661253DBBDB1EA8F9ED1F3 /* ZwiftClickCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */; };
+		3D37F8DC32F0AEB13F21655C /* DirConClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0884E10FD547D972C019339 /* DirConClient.swift */; };
+		C40DF0F2A9DE5EDEC7DE1BE1 /* FTMSCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */; };
+		B3D06847BC51F414DB718E91 /* KickrFtmsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */; };
+		353C8BF8D1A19FB981567395 /* KickrZwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33AF686D9322378D78554F /* KickrZwiftClient.swift */; };
+		5A31BA5B346E79C8556578EF /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
+		ED3979246A52E7BC33BBD225 /* DeviceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */; };
+		3C723167B6A1D76E6735E2BC /* ZwiftProtobuf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */; };
+		46567B53E34FC454BBDA9260 /* BleMockFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */; };
+		8AA35EF3235B32D36EA23E02 /* GearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA6E3F266BA257C314D688 /* GearModel.swift */; };
+		F20B6CB348453DA511DD835B /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */; };
+		CCC32C59A777DA6B672C022E /* RiderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */; };
+		33CFCF88C1E61915F495A4F9 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */; };
+		EEAD550DD2818A60479BBE58 /* TelemetryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */; };
+		9F8826930C3322335CAA391E /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D38849CFEA0FDC48C817EC /* CoursePicker.swift */; };
+		0149E655616E4658B2ABEC15 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937792F0E629ECF4FBD4E11F /* PairingView.swift */; };
+		7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E660CAF02E059FA057598 /* RideDashboard.swift */; };
+		E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54A05B8364AAFBA943F273 /* RootView.swift */; };
+		3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */; };
+		2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */; };
+		6407D2DDBF708DF13DE4A963 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 98499E54B5B7DB170C75555C /* SwiftProtobuf */; };
+		FCFE32D42BDA688221880A40 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52673E617F77A13755777685 /* CryptoSwift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F5BF48AA40CAD7891EB709FC /* VirtualCog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7104CC0B38BE3DC4718CA12B /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogApp.swift; sourceTree = "<group>"; };
+		36BDB9DB702044AD7803A081 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegateRouter.swift; sourceTree = "<group>"; };
+		21E16A7C9060C9B3EB69096D /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
+		158558E3A0151D6E2F913FA6 /* ClickClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickClient.swift; sourceTree = "<group>"; };
+		2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftClickCrypto.swift; sourceTree = "<group>"; };
+		C0884E10FD547D972C019339 /* DirConClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirConClient.swift; sourceTree = "<group>"; };
+		D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMSCodec.swift; sourceTree = "<group>"; };
+		C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickrFtmsClient.swift; sourceTree = "<group>"; };
+		2A33AF686D9322378D78554F /* KickrZwiftClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickrZwiftClient.swift; sourceTree = "<group>"; };
+		5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleUUIDs.swift; sourceTree = "<group>"; };
+		666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocols.swift; sourceTree = "<group>"; };
+		EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftProtobuf.swift; sourceTree = "<group>"; };
+		54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleMockFixtures.swift; sourceTree = "<group>"; };
+		CECA6E3F266BA257C314D688 /* GearModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearModel.swift; sourceTree = "<group>"; };
+		0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
+		520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderSettings.swift; sourceTree = "<group>"; };
+		239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
+		5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
+		51D38849CFEA0FDC48C817EC /* CoursePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePicker.swift; sourceTree = "<group>"; };
+		937792F0E629ECF4FBD4E11F /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
+		FE7E660CAF02E059FA057598 /* RideDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDashboard.swift; sourceTree = "<group>"; };
+		BF54A05B8364AAFBA943F273 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITEncoder.swift; sourceTree = "<group>"; };
+		0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = demo-hills.gpx; sourceTree = "<group>"; };
+		02D576DC28D304B8B0FA938F /* VirtualCog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCog.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F6F5CC3FCCF73F75AE9CCF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6407D2DDBF708DF13DE4A963 /* SwiftProtobuf in Frameworks */,
+				FCFE32D42BDA688221880A40 /* CryptoSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B731CEFC6751AAE0EC69B98 = {
+			isa = PBXGroup;
+			children = (
+				9921AA109753A2EE5E3AF1FA /* VirtualCog */,
+				887A6F90336FF23D95C3914B /* Resources */,
+				86024CAD1E83101D97359D73 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		86024CAD1E83101D97359D73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF48AA40CAD7891EB709FC /* VirtualCog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		887A6F90336FF23D95C3914B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0218C7B9BED22D7F8483F820 /* Courses */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0218C7B9BED22D7F8483F820 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		9921AA109753A2EE5E3AF1FA /* VirtualCog */ = {
+			isa = PBXGroup;
+			children = (
+				9F3CADF30E3EC97110798F53 /* App */,
+				B2E4674AE1C5B77C8FFECB66 /* BLE */,
+				0AF13B16B63557CFA5DE8FC0 /* Course */,
+				0E8B77A02ECF0F7CB8B4E48E /* Devices */,
+				731B8D4BE752C93FC598210E /* Mocks */,
+				079F01EA1A405C2E9ACD446C /* Physics */,
+				6095027EC2E78BC9BF506E5D /* Session */,
+				F6D7C2AA488D84981CA8C5F1 /* Telemetry */,
+				B544E797E268F397B018F0E7 /* UI */,
+				44A7D95215B0E98A5A7A53B1 /* Workout */,
+			);
+			path = VirtualCog;
+			sourceTree = "<group>";
+		};
+		9F3CADF30E3EC97110798F53 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7104CC0B38BE3DC4718CA12B /* AppModel.swift */,
+				02D576DC28D304B8B0FA938F /* VirtualCog.entitlements */,
+				6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B2E4674AE1C5B77C8FFECB66 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				36BDB9DB702044AD7803A081 /* BleManager.swift */,
+				FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		0AF13B16B63557CFA5DE8FC0 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				21E16A7C9060C9B3EB69096D /* GPXParser.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		0E8B77A02ECF0F7CB8B4E48E /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				398E7B618FDE364B4C7D29ED /* Click */,
+				03914D4EB8E40AA0E4B3D918 /* Kickr */,
+				6E27D8A1593D0DD97AAAE181 /* Shared */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		398E7B618FDE364B4C7D29ED /* Click */ = {
+			isa = PBXGroup;
+			children = (
+				158558E3A0151D6E2F913FA6 /* ClickClient.swift */,
+				2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */,
+			);
+			path = Click;
+			sourceTree = "<group>";
+		};
+		03914D4EB8E40AA0E4B3D918 /* Kickr */ = {
+			isa = PBXGroup;
+			children = (
+				C0884E10FD547D972C019339 /* DirConClient.swift */,
+				D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */,
+				C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */,
+				2A33AF686D9322378D78554F /* KickrZwiftClient.swift */,
+			);
+			path = Kickr;
+			sourceTree = "<group>";
+		};
+		6E27D8A1593D0DD97AAAE181 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */,
+				666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */,
+				EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		731B8D4BE752C93FC598210E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		079F01EA1A405C2E9ACD446C /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				CECA6E3F266BA257C314D688 /* GearModel.swift */,
+				0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+		6095027EC2E78BC9BF506E5D /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */,
+				239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		F6D7C2AA488D84981CA8C5F1 /* Telemetry */ = {
+			isa = PBXGroup;
+			children = (
+				5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */,
+			);
+			path = Telemetry;
+			sourceTree = "<group>";
+		};
+		B544E797E268F397B018F0E7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				51D38849CFEA0FDC48C817EC /* CoursePicker.swift */,
+				937792F0E629ECF4FBD4E11F /* PairingView.swift */,
+				FE7E660CAF02E059FA057598 /* RideDashboard.swift */,
+				BF54A05B8364AAFBA943F273 /* RootView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		44A7D95215B0E98A5A7A53B1 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* VirtualCog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */;
+			buildPhases = (
+				F2AB5FB218DA8B84623F4557 /* Sources */,
+				4F6F5CC3FCCF73F75AE9CCF4 /* Frameworks */,
+				55B558C7EF820E6E00E5993B /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = VirtualCog;
+			packageProductDependencies = (
+				98499E54B5B7DB170C75555C /* SwiftProtobuf */,
+				52673E617F77A13755777685 /* CryptoSwift */,
+			);
+			productName = VirtualCog;
+			productReference = F5BF48AA40CAD7891EB709FC /* VirtualCog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1500; LastUpgradeCheck = 1500; };
+			buildConfigurationList = 2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base,);
+			mainGroup = 2B731CEFC6751AAE0EC69B98;
+			packageReferences = (
+				0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
+				32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
+			productRefGroup = 86024CAD1E83101D97359D73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (42AEFBAE01D2DFD981F7DA7D /* VirtualCog */,);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55B558C7EF820E6E00E5993B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */,);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2AB5FB218DA8B84623F4557 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14E76E48F0B7D0F262741FF3 /* AppModel.swift in Sources */,
+				D11CD1BD21B2F6962484FED2 /* VirtualCogApp.swift in Sources */,
+				0D70B4A1F7530F95327DD5BB /* BleManager.swift in Sources */,
+				D48927E5F103D009D9F545E3 /* PeripheralDelegateRouter.swift in Sources */,
+				FC50A3480C878C5B15E84F48 /* GPXParser.swift in Sources */,
+				57D00E02C1790860CE4CD603 /* ClickClient.swift in Sources */,
+				EE661253DBBDB1EA8F9ED1F3 /* ZwiftClickCrypto.swift in Sources */,
+				3D37F8DC32F0AEB13F21655C /* DirConClient.swift in Sources */,
+				C40DF0F2A9DE5EDEC7DE1BE1 /* FTMSCodec.swift in Sources */,
+				B3D06847BC51F414DB718E91 /* KickrFtmsClient.swift in Sources */,
+				353C8BF8D1A19FB981567395 /* KickrZwiftClient.swift in Sources */,
+				5A31BA5B346E79C8556578EF /* BleUUIDs.swift in Sources */,
+				ED3979246A52E7BC33BBD225 /* DeviceProtocols.swift in Sources */,
+				3C723167B6A1D76E6735E2BC /* ZwiftProtobuf.swift in Sources */,
+				46567B53E34FC454BBDA9260 /* BleMockFixtures.swift in Sources */,
+				8AA35EF3235B32D36EA23E02 /* GearModel.swift in Sources */,
+				F20B6CB348453DA511DD835B /* PhysicsEngine.swift in Sources */,
+				CCC32C59A777DA6B672C022E /* RiderSettings.swift in Sources */,
+				33CFCF88C1E61915F495A4F9 /* SessionCoordinator.swift in Sources */,
+				EEAD550DD2818A60479BBE58 /* TelemetryStore.swift in Sources */,
+				9F8826930C3322335CAA391E /* CoursePicker.swift in Sources */,
+				0149E655616E4658B2ABEC15 /* PairingView.swift in Sources */,
+				7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */,
+				E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */,
+				3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		786310E230FDBED96D9BF785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_VERSION = 5.0; };
+			name = Debug;
+		};
+		ADB4E0451F1E3639B1B8CE38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_VERSION = 5.0; };
+			name = Release;
+		};
+		74C08D0A8F5E2B102E337550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCog/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FEAFF9F934D6111D9F836A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCog/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (786310E230FDBED96D9BF785 /* Debug */, ADB4E0451F1E3639B1B8CE38 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (74C08D0A8F5E2B102E337550 /* Debug */, FEAFF9F934D6111D9F836A20 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/apple/swift-protobuf.git"; requirement = {kind = upToNextMajorVersion; minimumVersion = 1.28.0; }; };
+		32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git"; requirement = {kind = upToNextMajorVersion; minimumVersion = 1.8.0; }; };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		98499E54B5B7DB170C75555C /* SwiftProtobuf */ = {isa = XCSwiftPackageProductDependency; package = 0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */; productName = SwiftProtobuf; };
+		52673E617F77A13755777685 /* CryptoSwift */ = {isa = XCSwiftPackageProductDependency; package = 32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */; productName = CryptoSwift; };
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
