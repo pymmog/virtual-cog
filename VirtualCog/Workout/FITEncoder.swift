@@ -12,6 +12,7 @@ struct WorkoutSummary: Identifiable, Codable, Equatable {
     var averagePower: Double
     var maxPower: Int
     var elevationGainMeters: Double
+    var averageHeartRate: Int?
     var fitFileName: String?
 }
 
@@ -63,6 +64,7 @@ final class WorkoutRecorder {
         let fitName = "ride-\(Int(ended.timeIntervalSince1970)).fit"
         let fitURL = WorkoutHistoryStore.directory.appendingPathComponent(fitName)
         try? FITEncoder.encode(samples: samples, start: startedAt, end: ended, to: fitURL)
+        let hrs = samples.compactMap(\.heartRate)
         let summary = WorkoutSummary(
             startedAt: startedAt,
             endedAt: ended,
@@ -72,6 +74,7 @@ final class WorkoutRecorder {
             averagePower: telemetry.averagePower,
             maxPower: telemetry.maxPower,
             elevationGainMeters: telemetry.elevationGainMeters,
+            averageHeartRate: hrs.isEmpty ? nil : hrs.reduce(0, +) / hrs.count,
             fitFileName: fitName
         )
         self.startedAt = nil

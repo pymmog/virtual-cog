@@ -24,7 +24,11 @@ struct RideDashboard: View {
                 MetricTile(label: "Power", value: "\(live.powerWatts)", unit: "W")
                 MetricTile(label: "Cadence", value: String(format: "%.0f", live.cadenceRpm), unit: "rpm")
                 MetricTile(label: "Speed", value: String(format: "%.1f", live.speedKmh), unit: "km/h")
-                MetricTile(label: "Heart rate", value: live.heartRateBpm.map(String.init) ?? "—", unit: "bpm")
+                MetricTile(
+                    label: "Heart rate",
+                    value: live.heartRateBpm.map(String.init) ?? "—",
+                    unit: live.heartRateBpm == nil ? "bpm" : "bpm · \(live.heartRateSource.title)"
+                )
                 MetricTile(label: "Gear", value: "\(live.gearIndex)", unit: String(format: "%.2f×", live.gearRatio))
                 MetricTile(label: "Grade", value: String(format: "%+.1f", live.gradePercent), unit: "%")
                 MetricTile(label: "Distance", value: String(format: "%.2f", live.distanceMeters / 1000), unit: "km")

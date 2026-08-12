@@ -11,6 +11,8 @@
     "crr": 400,
     "wind": 0
   },
+  "heart_rate_measurement_hex": "068e",
+  "heart_rate_expected_bpm": 142,
   "aes_ccm": {
     "key_hex": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
     "nonce_suffix_hex": "aabbccdd",

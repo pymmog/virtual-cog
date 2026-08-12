@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / "Resources" / "Fixtures" / "protocol_golden.json"
+FIXTURE = ROOT / "VirtualCog" / "Resources" / "Fixtures" / "protocol_golden.json"
 
 
 def parse_varint(buf: bytes, i: int) -> tuple[int, int]:
@@ -70,6 +70,16 @@ class HubGoldenTests(unittest.TestCase):
         # mid gear ~12 near 2.3–2.5× physical baseline region
         self.assertGreater(ratios[11], 20000)
         self.assertLess(ratios[11], 26000)
+
+
+class HeartRateGoldenTests(unittest.TestCase):
+    def test_measurement_uint8_contact(self):
+        fixture = json.loads(FIXTURE.read_text())
+        packet = bytes.fromhex(fixture["heart_rate_measurement_hex"])
+        flags, bpm = packet[0], packet[1]
+        self.assertEqual(bpm, fixture["heart_rate_expected_bpm"])
+        self.assertEqual(flags & 0x01, 0)  # uint8 BPM
+        self.assertEqual(flags & 0x06, 0x06)  # contact supported + detected
 
 
 class AESCCMTests(unittest.TestCase):

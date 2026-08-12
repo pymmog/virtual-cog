@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>VirtualCog HR</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>WKApplication</key>
+	<true/>
+	<key>WKWatchOnly</key>
+	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>VirtualCog reads live heart rate from Apple Watch so the Mac training app can log it during indoor rides.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>VirtualCog starts an indoor cycling workout on Apple Watch to keep live heart rate streaming while you ride.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>VirtualCog broadcasts heart rate over Bluetooth so the Mac app can pair like a standard heart-rate strap.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>VirtualCog broadcasts heart rate over Bluetooth so the Mac app can pair like a standard heart-rate strap.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+</dict>
+</plist>

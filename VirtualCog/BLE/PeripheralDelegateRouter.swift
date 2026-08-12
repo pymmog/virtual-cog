@@ -6,12 +6,14 @@ final class PeripheralDelegateRouter: NSObject, CBPeripheralDelegate {
     weak var ftms: KickrFtmsClient?
     weak var hub: KickrZwiftClient?
     weak var click: ClickClient?
+    weak var heartRate: HeartRateClient?
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         Task { @MainActor in
             self.ftms?.handleDiscoverServices(peripheral, error: error)
             self.hub?.handleDiscoverServices(peripheral, error: error)
             self.click?.handleDiscoverServices(peripheral, error: error)
+            self.heartRate?.handleDiscoverServices(peripheral, error: error)
         }
     }
 
@@ -20,6 +22,7 @@ final class PeripheralDelegateRouter: NSObject, CBPeripheralDelegate {
             self.ftms?.handleDiscoverCharacteristics(peripheral, service: service, error: error)
             self.hub?.handleDiscoverCharacteristics(peripheral, service: service, error: error)
             self.click?.handleDiscoverCharacteristics(peripheral, service: service, error: error)
+            self.heartRate?.handleDiscoverCharacteristics(peripheral, service: service, error: error)
         }
     }
 
@@ -28,6 +31,7 @@ final class PeripheralDelegateRouter: NSObject, CBPeripheralDelegate {
             self.ftms?.handleUpdateValue(peripheral, characteristic: characteristic, error: error)
             self.hub?.handleUpdateValue(peripheral, characteristic: characteristic, error: error)
             self.click?.handleUpdateValue(peripheral, characteristic: characteristic, error: error)
+            self.heartRate?.handleUpdateValue(peripheral, characteristic: characteristic, error: error)
         }
     }
 }

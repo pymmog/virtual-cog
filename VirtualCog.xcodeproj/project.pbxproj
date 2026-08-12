@@ -31,6 +31,15 @@
 		7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E660CAF02E059FA057598 /* RideDashboard.swift */; };
 		E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54A05B8364AAFBA943F273 /* RootView.swift */; };
 		3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */; };
+		92B5E3D20C8F5E1B0D4F6C23 /* HeartRateCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */; };
+		85E9B2C30D4F506B7C8D9E0A /* HeartRateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */; };
+		A3C6F4E31D906F2C1E507D34 /* HeartRateCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */; };
+		B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
+		B1C2D3E4F5061728394A5B02 /* VirtualCogWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B01 /* VirtualCogWatchApp.swift */; };
+		B1C2D3E4F5061728394A5B04 /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B03 /* WatchRootView.swift */; };
+		B1C2D3E4F5061728394A5B06 /* WatchHeartRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B05 /* WatchHeartRateModel.swift */; };
+		B1C2D3E4F5061728394A5B08 /* HeartRatePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B07 /* HeartRatePeripheral.swift */; };
+		B1C2D3E4F5061728394A5B0E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B0D /* HealthKit.framework */; };
 		2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */; };
 		6407D2DDBF708DF13DE4A963 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 98499E54B5B7DB170C75555C /* SwiftProtobuf */; };
 		FCFE32D42BDA688221880A40 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52673E617F77A13755777685 /* CryptoSwift */; };
@@ -65,6 +74,16 @@
 		B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITEncoder.swift; sourceTree = "<group>"; };
 		0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = demo-hills.gpx; sourceTree = "<group>"; };
 		02D576DC28D304B8B0FA938F /* VirtualCog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCog.entitlements; sourceTree = "<group>"; };
+		81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateCodec.swift; sourceTree = "<group>"; };
+		74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateClient.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B01 /* VirtualCogWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogWatchApp.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B03 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B05 /* WatchHeartRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHeartRateModel.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B07 /* HeartRatePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRatePeripheral.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B09 /* VirtualCogWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCogWatch.entitlements; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1C2D3E4F5061728394A5B0D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +96,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1C2D3E4F5061728394A5C02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1C2D3E4F5061728394A5B0E /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				9921AA109753A2EE5E3AF1FA /* VirtualCog */,
+				B1C2D3E4F5061728394A5E01 /* VirtualCogWatch */,
+				B1C2D3E4F5061728394A5E07 /* Frameworks */,
 				86024CAD1E83101D97359D73 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				F5BF48AA40CAD7891EB709FC /* VirtualCog.app */,
+				B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				398E7B618FDE364B4C7D29ED /* Click */,
+				B1C2D3E4F5061728394A5E06 /* HeartRate */,
 				03914D4EB8E40AA0E4B3D918 /* Kickr */,
 				6E27D8A1593D0DD97AAAE181 /* Shared */,
 			);
@@ -174,6 +205,67 @@
 				2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */,
 			);
 			path = Click;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E06 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */,
+			);
+			path = HeartRate;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E01 /* VirtualCogWatch */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5E02 /* App */,
+				B1C2D3E4F5061728394A5E03 /* BLE */,
+				B1C2D3E4F5061728394A5E04 /* HeartRate */,
+				B1C2D3E4F5061728394A5E05 /* UI */,
+			);
+			path = VirtualCogWatch;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E02 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5B0A /* Info.plist */,
+				B1C2D3E4F5061728394A5B09 /* VirtualCogWatch.entitlements */,
+				B1C2D3E4F5061728394A5B01 /* VirtualCogWatchApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E03 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5B07 /* HeartRatePeripheral.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E04 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5B05 /* WatchHeartRateModel.swift */,
+			);
+			path = HeartRate;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E05 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5B03 /* WatchRootView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5061728394A5E07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5061728394A5B0D /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		03914D4EB8E40AA0E4B3D918 /* Kickr */ = {
@@ -192,6 +284,7 @@
 			children = (
 				5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */,
 				666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */,
+				81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */,
 				EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */,
 			);
 			path = Shared;
@@ -272,6 +365,23 @@
 			productReference = F5BF48AA40CAD7891EB709FC /* VirtualCog.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1C2D3E4F5061728394A5C00 /* VirtualCogWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1C2D3E4F5061728394A5D03 /* Build configuration list for PBXNativeTarget "VirtualCogWatch" */;
+			buildPhases = (
+				B1C2D3E4F5061728394A5C01 /* Sources */,
+				B1C2D3E4F5061728394A5C02 /* Frameworks */,
+				B1C2D3E4F5061728394A5C03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VirtualCogWatch;
+			productName = VirtualCogWatch;
+			productReference = B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -291,7 +401,10 @@
 			productRefGroup = 86024CAD1E83101D97359D73 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (42AEFBAE01D2DFD981F7DA7D /* VirtualCog */,);
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* VirtualCog */,
+				B1C2D3E4F5061728394A5C00 /* VirtualCogWatch */,
+			);
 		};
 /* End PBXProject section */
 
@@ -300,6 +413,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */,);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C2D3E4F5061728394A5C03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
@@ -334,6 +454,21 @@
 				7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */,
 				E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */,
 				3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */,
+				92B5E3D20C8F5E1B0D4F6C23 /* HeartRateCodec.swift in Sources */,
+				85E9B2C30D4F506B7C8D9E0A /* HeartRateClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C2D3E4F5061728394A5C01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1C2D3E4F5061728394A5B02 /* VirtualCogWatchApp.swift in Sources */,
+				B1C2D3E4F5061728394A5B04 /* WatchRootView.swift in Sources */,
+				B1C2D3E4F5061728394A5B06 /* WatchHeartRateModel.swift in Sources */,
+				B1C2D3E4F5061728394A5B08 /* HeartRatePeripheral.swift in Sources */,
+				A3C6F4E31D906F2C1E507D34 /* HeartRateCodec.swift in Sources */,
+				B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,11 +551,66 @@
 			};
 			name = Release;
 		};
+		B1C2D3E4F5061728394A5D01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCogWatch/App/VirtualCogWatch.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCogWatch/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = watchos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B1C2D3E4F5061728394A5D02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCogWatch/App/VirtualCogWatch.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCogWatch/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = watchos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (786310E230FDBED96D9BF785 /* Debug */, ADB4E0451F1E3639B1B8CE38 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (74C08D0A8F5E2B102E337550 /* Debug */, FEAFF9F934D6111D9F836A20 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+		B1C2D3E4F5061728394A5D03 /* Build configuration list for PBXNativeTarget "VirtualCogWatch" */ = {isa = XCConfigurationList; buildConfigurations = (B1C2D3E4F5061728394A5D01 /* Debug */, B1C2D3E4F5061728394A5D02 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

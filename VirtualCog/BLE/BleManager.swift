@@ -8,10 +8,12 @@ final class BleManager: NSObject, ObservableObject {
     @Published private(set) var bluetoothState: CBManagerState = .unknown
     @Published private(set) var discoveredTrainers: [BlePeripheralSummary] = []
     @Published private(set) var discoveredClicks: [BlePeripheralSummary] = []
+    @Published private(set) var discoveredHeartRateMonitors: [BlePeripheralSummary] = []
 
     let kickrHub: KickrZwiftClient
     let kickrFtms: KickrFtmsClient
     let click: ClickClient
+    let heartRate: HeartRateClient
     let useMocks: Bool
 
     private var central: CBCentralManager?
@@ -19,6 +21,7 @@ final class BleManager: NSObject, ObservableObject {
     private var scanTimer: Timer?
     private let trainerRouter = PeripheralDelegateRouter()
     private let clickRouter = PeripheralDelegateRouter()
+    private let heartRateRouter = PeripheralDelegateRouter()
     private var cancellables = Set<AnyCancellable>()
 
     init(useMocks: Bool = false) {
@@ -26,13 +29,16 @@ final class BleManager: NSObject, ObservableObject {
         self.kickrHub = KickrZwiftClient()
         self.kickrFtms = KickrFtmsClient()
         self.click = ClickClient()
+        self.heartRate = HeartRateClient()
         super.init()
         trainerRouter.ftms = kickrFtms
         trainerRouter.hub = kickrHub
         clickRouter.click = click
+        heartRateRouter.heartRate = heartRate
         kickrHub.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         kickrFtms.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         click.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
+        heartRate.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         if useMocks {
             bluetoothState = .poweredOn
         } else {
@@ -40,6 +46,7 @@ final class BleManager: NSObject, ObservableObject {
             kickrHub.attach(manager: self)
             kickrFtms.attach(manager: self)
             click.attach(manager: self)
+            heartRate.attach(manager: self)
         }
     }
 
@@ -49,10 +56,10 @@ final class BleManager: NSObject, ObservableObject {
         startScan()
     }
 
-    /// Connect mock trainer + Click in one step for demo rides.
+    /// Connect mock trainer, Click, and heart-rate monitor for demo rides.
     func connectAllMocks() {
         guard useMocks else { return }
-        if discoveredTrainers.isEmpty || discoveredClicks.isEmpty {
+        if discoveredTrainers.isEmpty || discoveredClicks.isEmpty || discoveredHeartRateMonitors.isEmpty {
             startScan()
         }
         if let trainer = discoveredTrainers.first {
@@ -61,11 +68,15 @@ final class BleManager: NSObject, ObservableObject {
         if let clickDevice = discoveredClicks.first {
             connectClick(id: clickDevice.id)
         }
+        if let hrm = discoveredHeartRateMonitors.first {
+            connectHeartRate(id: hrm.id)
+        }
     }
 
     func startScan() {
         discoveredTrainers = []
         discoveredClicks = []
+        discoveredHeartRateMonitors = []
         if useMocks {
             discoveredTrainers = [
                 BlePeripheralSummary(id: UUID(), name: "KICKR CORE 2 (Mock)", rssi: -55, kind: .trainer)
@@ -73,12 +84,16 @@ final class BleManager: NSObject, ObservableObject {
             discoveredClicks = [
                 BlePeripheralSummary(id: UUID(), name: "Zwift Click (Mock)", rssi: -60, kind: .click)
             ]
+            discoveredHeartRateMonitors = [
+                BlePeripheralSummary(id: UUID(), name: "VirtualCog HR (Mock)", rssi: -52, kind: .heartRate)
+            ]
             return
         }
         guard bluetoothState == .poweredOn, let central else { return }
         let services = [
             CBUUID(string: String(format: "%04X", FTMSUUID.fitnessMachine)),
-            CBUUID(string: ZwiftBleIDs.service)
+            CBUUID(string: ZwiftBleIDs.service),
+            CBUUID(string: HeartRateUUID.serviceCBUUIDString)
         ]
         central.scanForPeripherals(withServices: services, options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         scanTimer?.invalidate()
@@ -117,11 +132,24 @@ final class BleManager: NSObject, ObservableObject {
         central.connect(peripheral, options: nil)
     }
 
+    func connectHeartRate(id: UUID) {
+        if useMocks {
+            heartRate.connectMock()
+            return
+        }
+        guard let peripheral = peripheralsByID[id], let central else { return }
+        stopScan()
+        peripheral.delegate = heartRateRouter
+        heartRate.willConnect(peripheral)
+        central.connect(peripheral, options: nil)
+    }
+
     func disconnectAll() {
         if useMocks {
             kickrFtms.disconnect()
             kickrHub.disconnect()
             click.disconnect()
+            heartRate.disconnect()
             return
         }
         for peripheral in peripheralsByID.values {
@@ -137,7 +165,7 @@ final class BleManager: NSObject, ObservableObject {
 }
 
 struct BlePeripheralSummary: Identifiable, Equatable {
-    enum Kind { case trainer, click, unknown }
+    enum Kind { case trainer, click, heartRate, unknown }
     let id: UUID
     var name: String
     var rssi: Int
@@ -164,6 +192,17 @@ extension BleManager: CBCentralManagerDelegate {
                 ?? "Unknown"
             var kind: BlePeripheralSummary.Kind = .unknown
             let upper = name.uppercased()
+            let advertised = (advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] ?? [])
+                + (advertisementData[CBAdvertisementDataOverflowServiceUUIDsKey] as? [CBUUID] ?? [])
+            let hrUUID = CBUUID(string: HeartRateUUID.serviceCBUUIDString)
+            if advertised.contains(hrUUID)
+                || upper.contains("VIRTUALCOG HR")
+                || upper.contains("TICKR")
+                || upper.contains("HRM")
+                || upper.contains("HEART RATE")
+                || upper.contains("POLAR") {
+                kind = .heartRate
+            }
             if upper.contains("KICKR") || upper.contains("HUB") {
                 kind = .trainer
             }
@@ -185,6 +224,8 @@ extension BleManager: CBCentralManagerDelegate {
                 upsert(&self.discoveredTrainers, summary)
             case .click:
                 upsert(&self.discoveredClicks, summary)
+            case .heartRate:
+                upsert(&self.discoveredHeartRateMonitors, summary)
             case .unknown:
                 if upper.contains("KICKR") {
                     upsert(&self.discoveredTrainers, summary)
@@ -198,6 +239,7 @@ extension BleManager: CBCentralManagerDelegate {
             self.kickrFtms.didConnect(peripheral)
             self.kickrHub.didConnect(peripheral)
             self.click.didConnect(peripheral)
+            self.heartRate.didConnect(peripheral)
         }
     }
 
@@ -207,6 +249,7 @@ extension BleManager: CBCentralManagerDelegate {
             self.kickrFtms.didFail(peripheral, message: message)
             self.kickrHub.didFail(peripheral, message: message)
             self.click.didFail(peripheral, message: message)
+            self.heartRate.didFail(peripheral, message: message)
         }
     }
 
@@ -215,6 +258,7 @@ extension BleManager: CBCentralManagerDelegate {
             self.kickrFtms.didDisconnect(peripheral)
             self.kickrHub.didDisconnect(peripheral)
             self.click.didDisconnect(peripheral)
+            self.heartRate.didDisconnect(peripheral)
         }
     }
 }

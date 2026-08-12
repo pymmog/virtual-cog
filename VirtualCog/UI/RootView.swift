@@ -50,6 +50,7 @@ struct RootView: View {
         HStack(spacing: 10) {
             StatusDot(title: "Trainer", state: trainerState)
             StatusDot(title: "Click", state: app.ble.click.connectionState)
+            StatusDot(title: "HR", state: app.ble.heartRate.connectionState)
         }
     }
 

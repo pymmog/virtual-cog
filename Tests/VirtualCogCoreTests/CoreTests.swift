@@ -160,3 +160,72 @@ final class FITEncoderTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
 }
+
+final class HeartRateCodecTests: XCTestCase {
+    func testUint8ContactDetectedRoundTrip() {
+        let packet = HeartRateMeasurement.notifyPacket(bpm: 142, contactDetected: true)
+        XCTAssertEqual(packet[0] & 0x01, 0)
+        XCTAssertEqual(packet[0] & 0x06, 0x06)
+        let parsed = HeartRateMeasurement.parse(packet)
+        XCTAssertEqual(parsed?.bpm, 142)
+        XCTAssertEqual(parsed?.sensorContactSupported, true)
+        XCTAssertEqual(parsed?.sensorContactDetected, true)
+    }
+
+    func testUint16HeartRate() {
+        let encoded = HeartRateMeasurement(
+            bpm: 300,
+            sensorContactSupported: false,
+            sensorContactDetected: false,
+            energyExpendedKj: nil,
+            rrIntervalsSeconds: []
+        ).encode()
+        XCTAssertEqual(encoded[0] & 0x01, 0x01)
+        XCTAssertEqual(HeartRateMeasurement.parse(encoded)?.bpm, 300)
+    }
+
+    func testEnergyAndRRIntervals() {
+        let encoded = HeartRateMeasurement(
+            bpm: 88,
+            sensorContactSupported: true,
+            sensorContactDetected: true,
+            energyExpendedKj: 12,
+            rrIntervalsSeconds: [0.5]
+        ).encode()
+        let parsed = HeartRateMeasurement.parse(encoded)
+        XCTAssertEqual(parsed?.bpm, 88)
+        XCTAssertEqual(parsed?.energyExpendedKj, 12)
+        XCTAssertEqual(parsed?.rrIntervalsSeconds.first ?? 0, 0.5, accuracy: 0.01)
+    }
+
+    func testMockFixtureHex() {
+        let packet = BleMockFixtures.data(fromHex: BleMockFixtures.heartRateMeasurementHex)
+        XCTAssertEqual(HeartRateMeasurement.parse(packet)?.bpm, 142)
+    }
+}
+
+@MainActor
+final class HeartRateOverlayTests: XCTestCase {
+    func testMonitorWinsOverTrainerThenFallsBack() {
+        let store = TelemetryStore()
+        var sample = LiveTelemetry(source: .ftms)
+        sample.powerWatts = 200
+        sample.heartRateBpm = 140
+        store.applyTrainer(sample, gear: GearModel(), mode: .sim, grade: 0, distance: 0)
+        XCTAssertEqual(store.live.heartRateBpm, 140)
+        XCTAssertEqual(store.live.heartRateSource, .trainerBridge)
+
+        store.applyHeartRateMonitor(155)
+        XCTAssertEqual(store.live.heartRateBpm, 155)
+        XCTAssertEqual(store.live.heartRateSource, .heartRateMonitor)
+
+        store.applyTrainer(sample, gear: GearModel(), mode: .sim, grade: 0, distance: 0)
+        XCTAssertEqual(store.live.heartRateBpm, 155)
+        XCTAssertEqual(store.live.heartRateSource, .heartRateMonitor)
+
+        store.applyHeartRateMonitor(nil)
+        store.applyTrainer(sample, gear: GearModel(), mode: .sim, grade: 0, distance: 0)
+        XCTAssertEqual(store.live.heartRateBpm, 140)
+        XCTAssertEqual(store.live.heartRateSource, .trainerBridge)
+    }
+}

@@ -10,6 +10,7 @@ A **native macOS training client + physics course runner**:
 - Live telemetry comparable to what Zwift gathers from the trainer/sensors
 - **GPX/route-driven** grade progression
 - Session history and **FIT** export
+- **Heart rate** from a BLE HRM or **VirtualCog Watch** (Apple Watch does not expose live HR to Mac natively)
 
 **Not in scope:** a 3D Zwift-like world, multiplayer, Zwift game servers, or official Zwift Partner certification.
 
@@ -24,6 +25,8 @@ flowchart LR
   Click[Zwift_Click_BLE] -->|button events| App[macOS_App]
   App -->|HubCommand gear_slope_ERG| Kickr[KICKR_CORE_2]
   Kickr -->|power_cadence_speed_HR| App
+  Watch[VirtualCog_Watch] -->|BLE_HRM_0x180D| App
+  Strap[Chest_strap_0x180D] -->|BLE_HRM| App
   GPX[GPX_Route] -->|grade_at_distance| Physics[Physics_Engine]
   Physics -->|InclineX100_GearRatio| App
   Cog[Zwift_Cog] -.->|passive_no_BLE| Kickr
@@ -76,6 +79,7 @@ flowchart TB
     ClickClient
     KickrZwiftClient
     KickrFtmsClient
+    HeartRateClient
     DirConClient
   end
   PairingView --> BleManager
@@ -86,11 +90,13 @@ flowchart TB
   SessionCoordinator --> KickrZwiftClient
   SessionCoordinator --> KickrFtmsClient
   SessionCoordinator --> ClickClient
+  SessionCoordinator --> HeartRateClient
   SessionCoordinator --> TelemetryStore
   SessionCoordinator --> WorkoutRecorder
   BleManager --> ClickClient
   BleManager --> KickrZwiftClient
   BleManager --> KickrFtmsClient
+  BleManager --> HeartRateClient
   DirConClient --> KickrFtmsClient
 ```
 
@@ -102,6 +108,7 @@ VirtualCog/
   BLE/                 # CBCentralManager wrapper, scan, reconnect
   Devices/
     Click/             # handshake, decrypt, ClickKeyPadStatus
+    HeartRate/         # BLE HRM central (0x180D)
     Kickr/             # Zwift Hub client + FTMS/CPS fallback
   Physics/             # gear→ratio, weights, SIM/ERG policy
   Course/              # GPX parse, elevation smooth, distance→grade
@@ -214,7 +221,7 @@ Collect, display, and log:
 | Instant / avg / max power (W) | Hub `0x03`, FTMS Indoor Bike Data, CPS |
 | Cadence (rpm) | Hub / FTMS |
 | Speed (km/h) | Hub virtual speed vs FTMS wheel speed (expose both if they differ) |
-| Heart rate | Trainer bridge and/or HRM `0x180D` |
+| Heart rate | Trainer bridge, BLE HRM `0x180D`, or VirtualCog Watch (HealthKit → BLE peripheral) |
 | Grade % | Course engine → Hub/FTMS incline |
 | Virtual gear + ratio | GearModel + Hub PhysicalParam / query |
 | Trainer mode | SIM / ERG / Level |
@@ -319,7 +326,7 @@ This product is a training dashboard after pairing; keep each screen to one job.
 ### Phase 6 — Hardening
 
 - DirCon / Wi‑Fi transport
-- Direct HR strap pairing
+- Direct HR strap pairing **and Apple Watch BLE HR** (Watch advertises `0x180D`; Mac is the central)
 - Simple ERG workout builder (ZWO-like intervals)
 - Firmware quirk matrix (Click encryption variants, CORE 2 Hub quirks)
 - BLE mock fixtures for CI without hardware
@@ -340,6 +347,21 @@ This product is a training dashboard after pairing; keep each screen to one job.
 
 ---
 
+## Apple Watch pairing (live HR)
+
+Apple Watch **cannot** be paired to this Mac app as a stock heart-rate strap. It does not advertise Bluetooth SIG Heart Rate (`0x180D`), WatchConnectivity is Watch↔iPhone only, and macOS HealthKit is delayed iCloud sync.
+
+**What works:** the independent `VirtualCogWatch` target.
+
+1. Run **VirtualCogWatch** on a real Apple Watch (select your Development Team; HealthKit + Bluetooth).
+2. Tap **Broadcast HR**. The Watch starts an indoor cycling workout and advertises as **VirtualCog HR**.
+3. On Mac VirtualCog → Setup → Scan → Connect **VirtualCog HR**.
+4. Keep the Watch app in the foreground / workout running. BPM overlays any trainer-bridged HR and is stored in FIT.
+
+The same Mac HRM client also pairs Polar / TICKR / Garmin straps. Third-party Watch apps that advertise `0x180D` can be used instead of VirtualCog Watch.
+
+---
+
 ## Success criteria
 
 - Pair CORE 2 + Click on macOS **without Zwift running**
@@ -348,6 +370,7 @@ This product is a training dashboard after pairing; keep each screen to one job.
 - ERG holds target watts
 - Live metrics match trainer within normal BLE jitter
 - Ride exports a valid FIT including power, cadence, HR (if present), speed, and grade
+- Pair a BLE HRM or VirtualCog Watch and log live heart rate into the FIT
 
 ---
 
