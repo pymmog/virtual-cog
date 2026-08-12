@@ -31,7 +31,16 @@ private struct PairingContent: View {
                         devices: app.ble.discoveredClicks,
                         connect: { app.ble.connectClick(id: $0) }
                     )
+                    deviceColumn(
+                        title: "Heart rate",
+                        devices: app.ble.discoveredHeartRateMonitors,
+                        connect: { app.ble.connectHeartRate(id: $0) }
+                    )
                 }
+
+                Text("Apple Watch does not advertise heart rate to Mac by itself. Open VirtualCog HR on the Watch, tap Broadcast HR, then Scan and Connect “VirtualCog HR” here. Chest straps (Polar, TICKR, Garmin) pair the same way via BLE 0x180D.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
 
                 HStack {
                     Button("Scan for devices") {
@@ -57,7 +66,7 @@ private struct PairingContent: View {
                 }
 
                 if app.ble.useMocks {
-                    Text("Demo ride pairs the mock trainer + Click, selects a course, and starts a session on the Ride tab. End the ride to open a Share sheet for the FIT (AirDrop → HealthFit/RunGap → Apple Health).")
+                    Text("Demo ride pairs the mock trainer, Click, and heart-rate monitor, selects a course, and starts a session on the Ride tab. End the ride to open a Share sheet for the FIT (AirDrop → HealthFit/RunGap → Apple Health).")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }

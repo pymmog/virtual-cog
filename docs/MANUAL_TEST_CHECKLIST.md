@@ -31,7 +31,16 @@ Use after building `VirtualCog.xcodeproj` on macOS 14+. Quit Zwift / Wahoo / oth
 - [ ] Pause / resume / end work
 - [ ] History lists ride; `.fit` file opens in a FIT-aware tool (power, cadence, HR, speed, grade, distance)
 
+## Heart rate — strap or Apple Watch
+- [ ] Scan finds a BLE HRM (Polar / TICKR / Garmin) or **VirtualCog HR**
+- [ ] Connect → Ride tile shows BPM with source “Watch / HRM”
+- [ ] Apple Watch: VirtualCogWatch → Broadcast HR → Mac connects while Watch workout is running
+- [ ] Dedicated HRM wins over trainer-bridged HR; FIT includes HR; History shows avg bpm
+- [ ] `--mock-ble` Connect mocks / Start demo ride shows mock Watch HR (~148 bpm)
+
 ## Notes
 - CORE 2 VS firmware: ≥ 2.2.44 / 3.2.44
 - Zwift Cog is passive — no pairing expected
 - Prefer Hub path for native VS; FTMS remains fallback
+- Apple Watch does not advertise HR to Mac without VirtualCog Watch (or another 0x180D Watch app)
+- Watch Simulator cannot BLE-pair to Mac; use a real Watch

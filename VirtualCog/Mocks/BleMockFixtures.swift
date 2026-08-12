@@ -12,6 +12,9 @@ enum BleMockFixtures {
     /// Click keypad plus pressed (Button_Plus=ON=0, Button_Minus=OFF=1) — illustrative.
     static let clickPlusPressedPayload = Data([0x08, 0x00, 0x10, 0x01])
 
+    /// Heart Rate Measurement: flags contact supported+detected (0x06), 142 bpm.
+    static let heartRateMeasurementHex = "068e"
+
     static func data(fromHex hex: String) -> Data {
         var result = Data()
         var index = hex.startIndex

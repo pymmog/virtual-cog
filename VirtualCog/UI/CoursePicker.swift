@@ -40,7 +40,7 @@ struct CoursePicker: View {
             }
         }
         .padding(24)
-        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.xml, .data], allowsMultipleSelection: false) { result in
+        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.gpxType, .xml, .data], allowsMultipleSelection: false) { result in
             if case .success(let urls) = result, let url = urls.first {
                 _ = url.startAccessingSecurityScopedResource()
                 defer { url.stopAccessingSecurityScopedResource() }
@@ -69,13 +69,7 @@ struct HistoryView: View {
                             Text(item.courseName).font(.headline)
                             Text(item.startedAt.formatted(date: .abbreviated, time: .shortened))
                                 .foregroundStyle(.secondary)
-                            Text(String(
-                                format: "%.1f km · avg %.0f W · max %d W · +%.0f m",
-                                item.distanceMeters / 1000,
-                                item.averagePower,
-                                item.maxPower,
-                                item.elevationGainMeters
-                            ))
+                            Text(historyLine(for: item))
                             if let name = item.fitFileName {
                                 Text("FIT: \(name)")
                                     .font(.caption)
@@ -100,6 +94,19 @@ struct HistoryView: View {
         }
         .padding(24)
     }
+
+    private func historyLine(for item: WorkoutSummary) -> String {
+        var parts = [
+            String(format: "%.1f km", item.distanceMeters / 1000),
+            String(format: "avg %.0f W", item.averagePower),
+            String(format: "max %d W", item.maxPower),
+            String(format: "+%.0f m", item.elevationGainMeters)
+        ]
+        if let hr = item.averageHeartRate {
+            parts.append("avg \(hr) bpm")
+        }
+        return parts.joined(separator: " · ")
+    }
 }
 
 struct SettingsView: View {
@@ -121,12 +128,22 @@ private struct SettingsForm: View {
                 Text("Defaults match documented Zwift Hub values (400 / 5100). Wrong scaling breaks gear/slope feel.")
                     .foregroundStyle(.secondary)
             }
+            Section("Heart rate") {
+                Text("Pair a BLE heart-rate monitor on the Setup tab, or run VirtualCog HR on Apple Watch and connect “VirtualCog HR”. Apple Watch does not expose live HR to Mac without that Watch app (HealthKit on Mac is iCloud-synced, not live).")
+                    .foregroundStyle(.secondary)
+            }
             Section("About") {
                 Text("VirtualCog is an unofficial interoperability client. Zwift Cog is passive mechanical — no BLE.")
                 Text("Not affiliated with Zwift or Wahoo.")
             }
         }
-        .frame(width: 420, height: 240)
+        .frame(width: 420, height: 320)
         .padding()
+    }
+}
+
+extension UTType {
+    static var gpxType: UTType {
+        UTType(filenameExtension: "gpx") ?? .xml
     }
 }

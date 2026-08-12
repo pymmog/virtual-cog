@@ -54,6 +54,14 @@ final class SessionCoordinator: ObservableObject {
             .sink { [weak self] _ in self?.objectWillChange.send() }
             .store(in: &cancellables)
 
+        ble.heartRate.$lastBpm
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bpm in
+                guard let self else { return }
+                self.telemetry.applyHeartRateMonitor(self.ble.heartRate.freshBpm ?? bpm)
+            }
+            .store(in: &cancellables)
+
         // Keep phase in sync with connections.
         Publishers.CombineLatest(ble.kickrHub.$connectionState, ble.kickrFtms.$connectionState)
             .receive(on: RunLoop.main)
@@ -164,6 +172,7 @@ final class SessionCoordinator: ObservableObject {
         }
 
         telemetry.applyTrainer(sample, gear: gear, mode: mode, grade: grade, distance: distanceMeters)
+        telemetry.applyHeartRateMonitor(ble.heartRate.freshBpm)
         let elevation = courses.selected?.points.last(where: { $0.distanceMeters <= distanceMeters })?.elevationMeters ?? 0
         telemetry.tickMoving(isMoving: sample.cadenceRpm > 20 || speedMs > 0.5, elevation: elevation, now: now)
         telemetry.updateClickBattery(ble.click.batteryPercent)

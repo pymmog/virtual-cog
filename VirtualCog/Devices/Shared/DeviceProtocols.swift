@@ -47,6 +47,7 @@ struct LiveTelemetry: Equatable {
     var hubVirtualSpeedKmh: Double?
     var ftmsWheelSpeedKmh: Double?
     var heartRateBpm: Int?
+    var heartRateSource: HeartRateSource = .none
     var gradePercent: Double = 0
     var gearIndex: Int = GearModel.baselineGear
     var gearRatio: Double = 0
@@ -67,6 +68,20 @@ enum TelemetrySource: String, Equatable {
     case ftms
     case hub
     case mock
+}
+
+enum HeartRateSource: String, Equatable {
+    case none
+    case trainerBridge
+    case heartRateMonitor
+
+    var title: String {
+        switch self {
+        case .none: return "No HR"
+        case .trainerBridge: return "Trainer"
+        case .heartRateMonitor: return "Watch / HRM"
+        }
+    }
 }
 
 protocol TrainerControlling: AnyObject {

@@ -27,7 +27,10 @@ final class TelemetryStore: ObservableObject {
         next.speedKmh = sample.speedKmh
         next.hubVirtualSpeedKmh = sample.hubVirtualSpeedKmh
         next.ftmsWheelSpeedKmh = sample.ftmsWheelSpeedKmh
-        if let hr = sample.heartRateBpm { next.heartRateBpm = hr }
+        if next.heartRateSource != .heartRateMonitor, let hr = sample.heartRateBpm {
+            next.heartRateBpm = hr
+            next.heartRateSource = .trainerBridge
+        }
         next.gradePercent = grade
         next.gearIndex = gear.gearIndex
         next.gearRatio = gear.ratio
@@ -38,6 +41,18 @@ final class TelemetryStore: ObservableObject {
         powerSamples.append(sample.powerWatts)
         if powerSamples.count > 0 {
             next.averagePower = Double(powerSamples.reduce(0, +)) / Double(powerSamples.count)
+        }
+        live = next
+    }
+
+    /// Dedicated HRM / Apple Watch overlay — wins over trainer-bridged HR while samples are fresh.
+    func applyHeartRateMonitor(_ bpm: Int?) {
+        var next = live
+        if let bpm {
+            next.heartRateBpm = bpm
+            next.heartRateSource = .heartRateMonitor
+        } else if next.heartRateSource == .heartRateMonitor {
+            next.heartRateSource = .none
         }
         live = next
     }

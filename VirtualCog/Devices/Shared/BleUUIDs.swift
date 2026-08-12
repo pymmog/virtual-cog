@@ -44,6 +44,21 @@ enum FTMSUUID {
     static let userData: UInt16 = 0x181C
 }
 
+/// Bluetooth SIG Heart Rate Profile (used by chest straps and VirtualCog Watch).
+enum HeartRateUUID {
+    static let service: UInt16 = 0x180D
+    static let measurement: UInt16 = 0x2A37
+    static let bodySensorLocation: UInt16 = 0x2A38
+    static let controlPoint: UInt16 = 0x2A39
+
+    /// Advertised local name for the companion watchOS peripheral.
+    static let watchAdvertisedName = "VirtualCog HR"
+
+    static var serviceCBUUIDString: String { String(format: "%04X", service) }
+    static var measurementCBUUIDString: String { String(format: "%04X", measurement) }
+    static var bodySensorLocationCBUUIDString: String { String(format: "%04X", bodySensorLocation) }
+}
+
 enum FTMSOpcode {
     static let requestControl: UInt8 = 0x00
     static let reset: UInt8 = 0x01
