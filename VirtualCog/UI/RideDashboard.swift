@@ -89,11 +89,7 @@ struct RideDashboard: View {
                 .disabled(!app.session.isRiding && !app.session.isPaused)
 
                 Button("End") {
-                    if app.ble.useMocks {
-                        app.endMockDemoRide()
-                    } else {
-                        app.session.endRide()
-                    }
+                    app.endRide(offerExport: true, switchToHistory: app.ble.useMocks)
                 }
                 .disabled(!app.session.isRiding && !app.session.isPaused)
 

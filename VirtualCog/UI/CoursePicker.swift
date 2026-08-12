@@ -59,26 +59,39 @@ struct HistoryView: View {
                 .font(.system(size: 34, weight: .semibold, design: .rounded))
 
             if app.history.items.isEmpty {
-                Text("Finished rides will show up here with FIT export paths.")
+                Text("Finished rides show up here. Export the FIT file, AirDrop it to your iPhone, then import with HealthFit or RunGap into Apple Health (Fitness can’t open FIT directly).")
                     .foregroundStyle(.secondary)
                 Spacer()
             } else {
                 List(app.history.items) { item in
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(item.courseName).font(.headline)
-                        Text(item.startedAt.formatted(date: .abbreviated, time: .shortened))
-                            .foregroundStyle(.secondary)
-                        Text(String(
-                            format: "%.1f km · avg %.0f W · max %d W · +%.0f m",
-                            item.distanceMeters / 1000,
-                            item.averagePower,
-                            item.maxPower,
-                            item.elevationGainMeters
-                        ))
-                        if let name = item.fitFileName {
-                            Text("FIT: \(name)")
-                                .font(.caption)
-                                .textSelection(.enabled)
+                    HStack(alignment: .top, spacing: 12) {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(item.courseName).font(.headline)
+                            Text(item.startedAt.formatted(date: .abbreviated, time: .shortened))
+                                .foregroundStyle(.secondary)
+                            Text(String(
+                                format: "%.1f km · avg %.0f W · max %d W · +%.0f m",
+                                item.distanceMeters / 1000,
+                                item.averagePower,
+                                item.maxPower,
+                                item.elevationGainMeters
+                            ))
+                            if let name = item.fitFileName {
+                                Text("FIT: \(name)")
+                                    .font(.caption)
+                                    .textSelection(.enabled)
+                            }
+                        }
+                        Spacer(minLength: 8)
+                        if app.history.fitURL(for: item) != nil {
+                            VStack(spacing: 8) {
+                                Button("Share") {
+                                    app.shareFit(for: item)
+                                }
+                                Button("Save…") {
+                                    FitExportUI.presentSavePanel(for: item, history: app.history)
+                                }
+                            }
                         }
                     }
                     .padding(.vertical, 4)

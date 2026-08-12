@@ -1,4 +1,6 @@
+import AppKit
 import Foundation
+import UniformTypeIdentifiers
 
 struct WorkoutSummary: Identifiable, Codable, Equatable {
     var id: UUID = UUID()
@@ -60,7 +62,7 @@ final class WorkoutRecorder {
         let ended = Date()
         let fitName = "ride-\(Int(ended.timeIntervalSince1970)).fit"
         let fitURL = WorkoutHistoryStore.directory.appendingPathComponent(fitName)
-        try? FITEncoder.encode(samples: samples, start: startedAt, to: fitURL)
+        try? FITEncoder.encode(samples: samples, start: startedAt, end: ended, to: fitURL)
         let summary = WorkoutSummary(
             startedAt: startedAt,
             endedAt: ended,
@@ -102,7 +104,20 @@ final class WorkoutHistoryStore: ObservableObject {
 
     func fitURL(for summary: WorkoutSummary) -> URL? {
         guard let name = summary.fitFileName else { return nil }
-        return Self.directory.appendingPathComponent(name)
+        let url = Self.directory.appendingPathComponent(name)
+        guard FileManager.default.fileExists(atPath: url.path) else { return nil }
+        return url
+    }
+
+    /// Copy a stored FIT to a user-chosen destination (Save panel).
+    func exportFit(for summary: WorkoutSummary, to destination: URL) throws {
+        guard let source = fitURL(for: summary) else {
+            throw FitExportError.missingFile
+        }
+        if FileManager.default.fileExists(atPath: destination.path) {
+            try FileManager.default.removeItem(at: destination)
+        }
+        try FileManager.default.copyItem(at: source, to: destination)
     }
 
     private func load() {
@@ -118,34 +133,68 @@ final class WorkoutHistoryStore: ObservableObject {
     }
 }
 
-/// Minimal FIT file encoder covering record messages needed for training platforms.
+enum FitExportError: LocalizedError {
+    case missingFile
+
+    var errorDescription: String? {
+        switch self {
+        case .missingFile:
+            return "The FIT file for this ride is missing."
+        }
+    }
+}
+
+/// Minimal FIT file encoder covering record + session + activity for importers.
 enum FITEncoder {
-    static func encode(samples: [WorkoutSample], start: Date, to url: URL) throws {
+    /// FIT sport: cycling
+    private static let sportCycling: UInt8 = 2
+    /// FIT sub_sport: indoor cycling
+    private static let subSportIndoorCycling: UInt8 = 6
+
+    static func encode(samples: [WorkoutSample], start: Date, end: Date = Date(), to url: URL) throws {
         var records = Data()
-        // File header placeholder
         var file = Data()
         // Header: size 14, protocol 2.0, profile 2.0, data size later, ".FIT", CRC
-        file.append(contentsOf: [14, 0x10, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00]) // size/protocol/profile + data size placeholder
+        file.append(contentsOf: [14, 0x10, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00])
         file.append(contentsOf: Array(".FIT".utf8))
         file.append(contentsOf: [0x00, 0x00]) // header CRC placeholder
 
-        // Definition + data for file_id (mesg 0)
+        let startFit = fitEpoch(start)
+        let endFit = fitEpoch(end)
+        let elapsedSeconds = max(0, end.timeIntervalSince(start))
+        let elapsedMs = UInt32(min(Double(UInt32.max), elapsedSeconds * 1000).rounded())
+
+        let distanceCm: UInt32 = {
+            if let last = samples.last {
+                return UInt32(clamping: Int(last.distanceMeters * 100))
+            }
+            return 0
+        }()
+
+        let powers = samples.map(\.power)
+        let avgPower = powers.isEmpty ? 0 : powers.reduce(0, +) / powers.count
+        let maxPower = powers.max() ?? 0
+        let avgCadence = samples.isEmpty ? 0 : Int(samples.map(\.cadence).reduce(0, +) / Double(samples.count))
+        let hrs = samples.compactMap(\.heartRate)
+        let avgHR = hrs.isEmpty ? 0 : hrs.reduce(0, +) / hrs.count
+
+        // file_id (mesg 0)
         records.append(definitionMessage(
             local: 0,
             global: 0,
             fields: [
-                (0, 1, 0),  // type enum
+                (0, 1, 0),   // type enum
                 (1, 2, 132), // manufacturer uint16
                 (4, 4, 134), // time_created uint32
             ]
         ))
-        var fileID = Data([0x00]) // data message local 0
+        var fileID = Data([0x00])
         fileID.append(4) // activity
         appendUInt16(&fileID, 255) // development manufacturer
-        appendUInt32(&fileID, UInt32(start.timeIntervalSince1970) - 631_065_600) // FIT epoch
+        appendUInt32(&fileID, startFit)
         records.append(fileID)
 
-        // record definition mesg 20
+        // record (mesg 20)
         records.append(definitionMessage(
             local: 1,
             global: 20,
@@ -156,14 +205,13 @@ enum FITEncoder {
                 (5, 4, 134),   // distance (cm)
                 (6, 2, 132),   // speed (mm/s)
                 (7, 2, 132),   // power
-                (9, 1, 1),     // grade (signed percent * 100 scaled via sint8 approx — use field 9 as sint8 percent)
+                (9, 1, 1),     // grade (sint8 percent)
             ]
         ))
 
         for sample in samples {
             var msg = Data([0x01])
-            let ts = UInt32(sample.timestamp.timeIntervalSince1970) - 631_065_600
-            appendUInt32(&msg, ts)
+            appendUInt32(&msg, fitEpoch(sample.timestamp))
             msg.append(UInt8(min(255, sample.heartRate ?? 0)))
             msg.append(UInt8(min(255, Int(sample.cadence.rounded()))))
             appendUInt32(&msg, UInt32(clamping: Int(sample.distanceMeters * 100)))
@@ -174,11 +222,65 @@ enum FITEncoder {
             records.append(msg)
         }
 
-        // Patch data size at bytes 4..7 little-endian
+        // session (mesg 18)
+        records.append(definitionMessage(
+            local: 2,
+            global: 18,
+            fields: [
+                (253, 4, 134), // timestamp
+                (2, 4, 134),   // start_time
+                (5, 1, 0),     // sport
+                (6, 1, 0),     // sub_sport
+                (7, 4, 134),   // total_elapsed_time (ms)
+                (8, 4, 134),   // total_timer_time (ms)
+                (9, 4, 134),   // total_distance (cm)
+                (16, 1, 2),    // avg_heart_rate
+                (18, 1, 2),    // avg_cadence
+                (20, 2, 132),  // avg_power
+                (21, 2, 132),  // max_power
+                (26, 2, 132),  // num_laps
+            ]
+        ))
+        var session = Data([0x02])
+        appendUInt32(&session, endFit)
+        appendUInt32(&session, startFit)
+        session.append(sportCycling)
+        session.append(subSportIndoorCycling)
+        appendUInt32(&session, elapsedMs)
+        appendUInt32(&session, elapsedMs)
+        appendUInt32(&session, distanceCm)
+        session.append(UInt8(min(255, avgHR)))
+        session.append(UInt8(min(255, avgCadence)))
+        appendUInt16(&session, UInt16(clamping: avgPower))
+        appendUInt16(&session, UInt16(clamping: maxPower))
+        appendUInt16(&session, 1) // num_laps
+        records.append(session)
+
+        // activity (mesg 34)
+        records.append(definitionMessage(
+            local: 3,
+            global: 34,
+            fields: [
+                (253, 4, 134), // timestamp
+                (0, 4, 134),   // total_timer_time (ms)
+                (1, 2, 132),   // num_sessions
+                (2, 1, 0),     // type
+                (3, 1, 0),     // event
+                (4, 1, 0),     // event_type
+            ]
+        ))
+        var activity = Data([0x03])
+        appendUInt32(&activity, endFit)
+        appendUInt32(&activity, elapsedMs)
+        appendUInt16(&activity, 1) // num_sessions
+        activity.append(0) // type = manual
+        activity.append(26) // event = activity
+        activity.append(1) // event_type = stop
+        records.append(activity)
+
         let dataSize = UInt32(records.count)
         file.replaceSubrange(4..<8, with: withUnsafeBytes(of: dataSize.littleEndian, Array.init))
 
-        // Header CRC (bytes 0..11)
         let headerCRC = crc16(Data(file.prefix(12)))
         file[12] = UInt8(headerCRC & 0xFF)
         file[13] = UInt8(headerCRC >> 8)
@@ -190,8 +292,12 @@ enum FITEncoder {
         try file.write(to: url, options: .atomic)
     }
 
+    private static func fitEpoch(_ date: Date) -> UInt32 {
+        UInt32(max(0, date.timeIntervalSince1970 - 631_065_600))
+    }
+
     private static func definitionMessage(local: UInt8, global: UInt16, fields: [(UInt8, UInt8, UInt8)]) -> Data {
-        var data = Data([0x40 | local, 0x00, 0x00]) // defn, reserved, architecture LE
+        var data = Data([0x40 | local, 0x00, 0x00])
         appendUInt16(&data, global)
         data.append(UInt8(fields.count))
         for field in fields {
@@ -230,5 +336,40 @@ enum FITEncoder {
             crc = crc ^ tmp ^ table[Int((byte >> 4) & 0xF)]
         }
         return crc
+    }
+}
+
+enum FitExportUI {
+    @MainActor
+    static func presentShareSheet(for url: URL, relativeTo view: NSView? = nil) {
+        let picker = NSSharingServicePicker(items: [url])
+        if let view {
+            picker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
+            return
+        }
+        if let window = NSApp.keyWindow ?? NSApp.windows.first,
+           let content = window.contentView {
+            let rect = CGRect(x: content.bounds.midX, y: content.bounds.midY, width: 1, height: 1)
+            picker.show(relativeTo: rect, of: content, preferredEdge: .minY)
+        }
+    }
+
+    @MainActor
+    static func presentSavePanel(for summary: WorkoutSummary, history: WorkoutHistoryStore) {
+        guard let source = history.fitURL(for: summary) else { return }
+        let panel = NSSavePanel()
+        panel.canCreateDirectories = true
+        panel.nameFieldStringValue = summary.fitFileName ?? source.lastPathComponent
+        panel.allowedContentTypes = [UTType(filenameExtension: "fit") ?? .data]
+        panel.title = "Save workout FIT"
+        panel.begin { response in
+            guard response == .OK, let destination = panel.url else { return }
+            do {
+                try history.exportFit(for: summary, to: destination)
+            } catch {
+                let alert = NSAlert(error: error)
+                alert.runModal()
+            }
+        }
     }
 }

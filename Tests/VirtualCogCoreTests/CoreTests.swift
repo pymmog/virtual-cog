@@ -121,9 +121,10 @@ final class AESCCMGoldenTests: XCTestCase {
 
 final class FITEncoderTests: XCTestCase {
     func testCRCAndFileWrite() throws {
+        let start = Date(timeIntervalSince1970: 1_700_000_000)
         let samples = [
             WorkoutSample(
-                timestamp: Date(),
+                timestamp: start,
                 power: 200,
                 cadence: 90,
                 speedKmh: 30,
@@ -131,14 +132,28 @@ final class FITEncoderTests: XCTestCase {
                 gradePercent: 3,
                 distanceMeters: 100,
                 gearIndex: 12
+            ),
+            WorkoutSample(
+                timestamp: start.addingTimeInterval(60),
+                power: 220,
+                cadence: 92,
+                speedKmh: 31,
+                heartRate: 145,
+                gradePercent: 4,
+                distanceMeters: 500,
+                gearIndex: 13
             )
         ]
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("test.fit")
-        try FITEncoder.encode(samples: samples, start: Date(), to: url)
+        try FITEncoder.encode(
+            samples: samples,
+            start: start,
+            end: start.addingTimeInterval(60),
+            to: url
+        )
         let data = try Data(contentsOf: url)
-        XCTAssertGreaterThan(data.count, 20)
+        XCTAssertGreaterThan(data.count, 80)
         XCTAssertEqual(String(data: data[8..<12], encoding: .ascii), ".FIT")
-        // verify CRC trailer validates whole file minus CRC
         let body = data.dropLast(2)
         let expected = FITEncoder.crc16(Data(body))
         let actual = UInt16(data[data.count - 2]) | (UInt16(data[data.count - 1]) << 8)

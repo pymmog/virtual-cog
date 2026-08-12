@@ -11,6 +11,8 @@ final class AppModel: ObservableObject {
 
     /// Shared tab selection so mock demo can jump Setup → Ride → History.
     @Published var selectedTab: AppTab = .setup
+    /// FIT ready to share after ending a ride (cleared once presented).
+    @Published var pendingFitShareURL: URL?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -51,9 +53,31 @@ final class AppModel: ObservableObject {
     }
 
     func endMockDemoRide() {
+        endRide(offerExport: true, switchToHistory: true)
+    }
+
+    /// Ends the current ride and optionally queues the FIT for Share.
+    func endRide(offerExport: Bool = true, switchToHistory: Bool = false) {
         guard session.isRiding || session.isPaused else { return }
         session.endRide()
-        selectedTab = .history
+        if switchToHistory {
+            selectedTab = .history
+        }
+        guard offerExport, let summary = history.items.first, let url = history.fitURL(for: summary) else {
+            return
+        }
+        pendingFitShareURL = url
+    }
+
+    func shareFit(for summary: WorkoutSummary) {
+        guard let url = history.fitURL(for: summary) else { return }
+        FitExportUI.presentShareSheet(for: url)
+    }
+
+    func presentPendingFitShareIfNeeded() {
+        guard let url = pendingFitShareURL else { return }
+        pendingFitShareURL = nil
+        FitExportUI.presentShareSheet(for: url)
     }
 
     private func bindChildren() {

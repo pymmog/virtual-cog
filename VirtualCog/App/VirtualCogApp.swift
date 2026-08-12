@@ -33,11 +33,7 @@ struct VirtualCogApp: App {
                 .disabled(!appModel.session.isRiding)
 
                 Button("End Ride") {
-                    if appModel.ble.useMocks {
-                        appModel.endMockDemoRide()
-                    } else {
-                        appModel.session.endRide()
-                    }
+                    appModel.endRide(offerExport: true, switchToHistory: appModel.ble.useMocks)
                 }
                 .keyboardShortcut("e", modifiers: [.command])
                 .disabled(!appModel.session.isRiding && !appModel.session.isPaused)

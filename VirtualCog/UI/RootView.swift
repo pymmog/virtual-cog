@@ -23,6 +23,13 @@ struct RootView: View {
             }
         }
         .background(AmbientBackground())
+        .onChange(of: app.pendingFitShareURL) { _, url in
+            guard url != nil else { return }
+            // Let the History tab settle before presenting the picker.
+            DispatchQueue.main.async {
+                app.presentPendingFitShareIfNeeded()
+            }
+        }
     }
 
     private var header: some View {
