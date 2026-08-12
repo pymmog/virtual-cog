@@ -27,8 +27,8 @@ let package = Package(
                 "Devices/Shared/zwift.proto"
             ],
             resources: [
-                .copy("../Resources/Courses"),
-                .copy("../Resources/Fixtures")
+                .copy("Resources/Courses"),
+                .copy("Resources/Fixtures")
             ]
         ),
         .testTarget(

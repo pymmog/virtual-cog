@@ -190,6 +190,7 @@ final class CourseLibrary: ObservableObject {
         urls.append(contentsOf: Bundle.main.urls(forResourcesWithExtension: "gpx", subdirectory: "Courses") ?? [])
         #if SWIFT_PACKAGE
         urls.append(contentsOf: Bundle.module.urls(forResourcesWithExtension: "gpx", subdirectory: nil) ?? [])
+        urls.append(contentsOf: Bundle.module.urls(forResourcesWithExtension: "gpx", subdirectory: "Courses") ?? [])
         #endif
         var loaded: [Course] = []
         var seen = Set<String>()

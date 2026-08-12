@@ -16,6 +16,10 @@ final class TelemetryStore: ObservableObject {
         lastElevation = nil
     }
 
+    func updateClickBattery(_ percent: Int?) {
+        live.clickBatteryPercent = percent
+    }
+
     func applyTrainer(_ sample: LiveTelemetry, gear: GearModel, mode: TrainerMode, grade: Double, distance: Double) {
         var next = live
         next.powerWatts = sample.powerWatts

@@ -84,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				9921AA109753A2EE5E3AF1FA /* VirtualCog */,
-				887A6F90336FF23D95C3914B /* Resources */,
 				86024CAD1E83101D97359D73 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,6 +121,7 @@
 				0E8B77A02ECF0F7CB8B4E48E /* Devices */,
 				731B8D4BE752C93FC598210E /* Mocks */,
 				079F01EA1A405C2E9ACD446C /* Physics */,
+				887A6F90336FF23D95C3914B /* Resources */,
 				6095027EC2E78BC9BF506E5D /* Session */,
 				F6D7C2AA488D84981CA8C5F1 /* Telemetry */,
 				B544E797E268F397B018F0E7 /* UI */,
@@ -342,18 +342,39 @@
 /* Begin XCBuildConfiguration section */
 		786310E230FDBED96D9BF785 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_VERSION = 5.0; };
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
 			name = Debug;
 		};
 		ADB4E0451F1E3639B1B8CE38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_VERSION = 5.0; };
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
 			name = Release;
 		};
 		74C08D0A8F5E2B102E337550 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -365,6 +386,9 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -373,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -384,6 +409,9 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -391,8 +419,8 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (786310E230FDBED96D9BF785 /* Debug */, ADB4E0451F1E3639B1B8CE38 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (74C08D0A8F5E2B102E337550 /* Debug */, FEAFF9F934D6111D9F836A20 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (786310E230FDBED96D9BF785 /* Debug */, ADB4E0451F1E3639B1B8CE38 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (74C08D0A8F5E2B102E337550 /* Debug */, FEAFF9F934D6111D9F836A20 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

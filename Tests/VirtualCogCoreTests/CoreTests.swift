@@ -15,13 +15,14 @@ final class GearModelTests: XCTestCase {
     func testDebouncerIgnoresHold() {
         var debouncer = ClickDebouncer(minimumInterval: 0.2)
         let t0 = Date()
-        XCTAssertEqual(debouncer.process(plusDown: true, minusDown: false, now: t0), [.shiftUp])
-        XCTAssertEqual(debouncer.process(plusDown: true, minusDown: false, now: t0.addingTimeInterval(0.05)), [])
-        XCTAssertEqual(debouncer.process(plusDown: false, minusDown: false, now: t0.addingTimeInterval(0.06)), [])
-        XCTAssertEqual(
-            debouncer.process(plusDown: true, minusDown: false, now: t0.addingTimeInterval(0.3)),
-            [.shiftUp]
-        )
+        let first: [ClickDebouncer.Event] = debouncer.process(plusDown: true, minusDown: false, now: t0)
+        XCTAssertEqual(first, [.shiftUp])
+        let held: [ClickDebouncer.Event] = debouncer.process(plusDown: true, minusDown: false, now: t0.addingTimeInterval(0.05))
+        XCTAssertTrue(held.isEmpty)
+        let released: [ClickDebouncer.Event] = debouncer.process(plusDown: false, minusDown: false, now: t0.addingTimeInterval(0.06))
+        XCTAssertTrue(released.isEmpty)
+        let second: [ClickDebouncer.Event] = debouncer.process(plusDown: true, minusDown: false, now: t0.addingTimeInterval(0.3))
+        XCTAssertEqual(second, [.shiftUp])
     }
 }
 

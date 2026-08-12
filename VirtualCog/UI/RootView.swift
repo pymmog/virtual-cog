@@ -2,13 +2,12 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var app: AppModel
-    @State private var tab: AppTab = .setup
 
     var body: some View {
         VStack(spacing: 0) {
             header
             Divider()
-            TabView(selection: $tab) {
+            TabView(selection: $app.selectedTab) {
                 PairingView()
                     .tabItem { Label("Setup", systemImage: "dot.radiowaves.left.and.right") }
                     .tag(AppTab.setup)

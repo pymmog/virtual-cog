@@ -1,3 +1,4 @@
+import Combine
 import CoreBluetooth
 import Foundation
 
@@ -18,6 +19,7 @@ final class BleManager: NSObject, ObservableObject {
     private var scanTimer: Timer?
     private let trainerRouter = PeripheralDelegateRouter()
     private let clickRouter = PeripheralDelegateRouter()
+    private var cancellables = Set<AnyCancellable>()
 
     init(useMocks: Bool = false) {
         self.useMocks = useMocks
@@ -28,6 +30,9 @@ final class BleManager: NSObject, ObservableObject {
         trainerRouter.ftms = kickrFtms
         trainerRouter.hub = kickrHub
         clickRouter.click = click
+        kickrHub.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
+        kickrFtms.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
+        click.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         if useMocks {
             bluetoothState = .poweredOn
         } else {
@@ -35,6 +40,26 @@ final class BleManager: NSObject, ObservableObject {
             kickrHub.attach(manager: self)
             kickrFtms.attach(manager: self)
             click.attach(manager: self)
+        }
+    }
+
+    /// Populate mock peripherals so Setup is ready without tapping Scan.
+    func bootstrapMocks() {
+        guard useMocks else { return }
+        startScan()
+    }
+
+    /// Connect mock trainer + Click in one step for demo rides.
+    func connectAllMocks() {
+        guard useMocks else { return }
+        if discoveredTrainers.isEmpty || discoveredClicks.isEmpty {
+            startScan()
+        }
+        if let trainer = discoveredTrainers.first {
+            connectTrainer(id: trainer.id)
+        }
+        if let clickDevice = discoveredClicks.first {
+            connectClick(id: clickDevice.id)
         }
     }
 

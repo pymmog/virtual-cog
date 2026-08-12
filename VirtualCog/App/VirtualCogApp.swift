@@ -13,6 +13,13 @@ struct VirtualCogApp: App {
         .commands {
             CommandGroup(replacing: .newItem) {}
             CommandMenu("Session") {
+                if appModel.ble.useMocks {
+                    Button("Start Demo Ride") {
+                        appModel.startMockDemoRide()
+                    }
+                    .keyboardShortcut("d", modifiers: [.command])
+                }
+
                 Button("Start Ride") {
                     appModel.session.startRide()
                 }
@@ -26,7 +33,11 @@ struct VirtualCogApp: App {
                 .disabled(!appModel.session.isRiding)
 
                 Button("End Ride") {
-                    appModel.session.endRide()
+                    if appModel.ble.useMocks {
+                        appModel.endMockDemoRide()
+                    } else {
+                        appModel.session.endRide()
+                    }
                 }
                 .keyboardShortcut("e", modifiers: [.command])
                 .disabled(!appModel.session.isRiding && !appModel.session.isPaused)

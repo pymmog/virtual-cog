@@ -15,8 +15,8 @@ final class DirConClient: ObservableObject {
         state = .scanning
         let descriptor = NWBrowser.Descriptor.bonjour(type: "_wahoo-fitness-tnp._tcp", domain: nil)
         let browser = NWBrowser(for: descriptor, using: .tcp)
-        browser.stateUpdateHandler = { [weak self] _, _ in }
-        browser.browseResultsChangedHandler = { [weak self] results, _ in
+        browser.stateUpdateHandler = { _ in }
+        browser.browseResultsChangedHandler = { [weak self] (results: Set<NWBrowser.Result>, _: Set<NWBrowser.Result.Change>) in
             Task { @MainActor in
                 self?.discoveredHosts = results.compactMap { result in
                     switch result.endpoint {

@@ -73,6 +73,10 @@ struct ClickDebouncer {
     private var plusWasDown = false
     private var minusWasDown = false
 
+    init(minimumInterval: TimeInterval = 0.18) {
+        self.minimumInterval = minimumInterval
+    }
+
     enum Event: Equatable {
         case shiftUp
         case shiftDown

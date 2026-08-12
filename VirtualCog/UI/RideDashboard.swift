@@ -70,6 +70,13 @@ struct RideDashboard: View {
             }
 
             HStack(spacing: 12) {
+                if app.ble.useMocks, !app.session.isRiding, !app.session.isPaused {
+                    Button("Start demo ride") {
+                        app.startMockDemoRide()
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+
                 Button(app.session.isRiding ? "Riding…" : "Start ride") {
                     app.session.startRide()
                 }
@@ -82,7 +89,11 @@ struct RideDashboard: View {
                 .disabled(!app.session.isRiding && !app.session.isPaused)
 
                 Button("End") {
-                    app.session.endRide()
+                    if app.ble.useMocks {
+                        app.endMockDemoRide()
+                    } else {
+                        app.session.endRide()
+                    }
                 }
                 .disabled(!app.session.isRiding && !app.session.isPaused)
 

@@ -50,6 +50,10 @@ final class SessionCoordinator: ObservableObject {
             self?.handleShift(event)
         }
 
+        telemetry.objectWillChange
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &cancellables)
+
         // Keep phase in sync with connections.
         Publishers.CombineLatest(ble.kickrHub.$connectionState, ble.kickrFtms.$connectionState)
             .receive(on: RunLoop.main)
@@ -162,7 +166,7 @@ final class SessionCoordinator: ObservableObject {
         telemetry.applyTrainer(sample, gear: gear, mode: mode, grade: grade, distance: distanceMeters)
         let elevation = courses.selected?.points.last(where: { $0.distanceMeters <= distanceMeters })?.elevationMeters ?? 0
         telemetry.tickMoving(isMoving: sample.cadenceRpm > 20 || speedMs > 0.5, elevation: elevation, now: now)
-        telemetry.live.clickBatteryPercent = ble.click.batteryPercent
+        telemetry.updateClickBattery(ble.click.batteryPercent)
         recorder.append(telemetry.live, at: now)
     }
 

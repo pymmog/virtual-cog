@@ -44,9 +44,22 @@ private struct PairingContent: View {
                     }
 
                     if app.ble.useMocks {
+                        Button("Connect mocks") {
+                            app.ble.connectAllMocks()
+                        }
+                        Button("Start demo ride") {
+                            app.startMockDemoRide()
+                        }
+                        .buttonStyle(.borderedProminent)
                         Text("Mock BLE enabled")
                             .foregroundStyle(.orange)
                     }
+                }
+
+                if app.ble.useMocks {
+                    Text("Demo ride pairs the mock trainer + Click, selects a course, and starts a session on the Ride tab. End the ride there to land in History with a FIT file.")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
                 }
 
                 GroupBox("Rider & bike") {
