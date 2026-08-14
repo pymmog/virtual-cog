@@ -17,14 +17,14 @@ See **[PLAN.md](PLAN.md)** for architecture, BLE/protocol connections, physics/c
 3. Enable Bluetooth permission when prompted
 4. Run the `VirtualCog` scheme
 5. Optional: add launch argument `--mock-ble` to exercise UI without hardware
-6. For live Apple Watch HR: select your Development Team, run the `VirtualCogWatch` scheme on a real Watch, tap **Broadcast HR**, then Scan → Connect **VirtualCog HR** on the Mac Setup tab
+6. For live Apple Watch HR: plug in the **iPhone**, select the `VirtualCogIOS` scheme, Run on the iPhone. Xcode installs the Watch companion automatically. On the Watch tap **Broadcast HR**, and keep the Mac `VirtualCog` app open.
 
 ## Apple Watch heart rate
 
-Apple Watch does **not** advertise the Bluetooth Heart Rate Profile on its own, and macOS HealthKit is iCloud-synced (not live). Pairing works like a chest strap:
+Apple Watch does **not** advertise the Bluetooth Heart Rate Profile (watchOS has no `CBPeripheralManager`), and macOS HealthKit is iCloud-synced (not live). Pairing:
 
-1. Watch app starts an indoor cycling workout (HealthKit) and advertises **VirtualCog HR** as BLE service `0x180D`
-2. Mac app scans/connects as a standard HRM central
+1. Mac app advertises a custom ingest service as soon as it launches
+2. Watch app starts an indoor cycling workout (HealthKit), connects to VirtualCog, and writes BPM
 3. Live BPM overlays trainer-bridged HR and is written into the FIT file
 
 Chest straps (Polar, Wahoo TICKR, Garmin) use the same Setup column.
@@ -47,7 +47,9 @@ VirtualCog/
   Workout/       # FIT encoder + history
   UI/            # Setup, Ride, Courses, History
   Mocks/         # BLE fixtures
-VirtualCogWatch/ # Independent watchOS HR broadcaster
+VirtualCogIOS/   # iPhone companion (installs the Watch app)
+VirtualCogWatch/ # Watch HR companion (HealthKit + BLE to Mac)
+SharedPhoneWatch/ # WatchConnectivity payload
 ```
 
 ## Tests

@@ -25,7 +25,7 @@ flowchart LR
   Click[Zwift_Click_BLE] -->|button events| App[macOS_App]
   App -->|HubCommand gear_slope_ERG| Kickr[KICKR_CORE_2]
   Kickr -->|power_cadence_speed_HR| App
-  Watch[VirtualCog_Watch] -->|BLE_HRM_0x180D| App
+  Watch[VirtualCog_Watch] -->|BLE_central_writes_BPM| App
   Strap[Chest_strap_0x180D] -->|BLE_HRM| App
   GPX[GPX_Route] -->|grade_at_distance| Physics[Physics_Engine]
   Physics -->|InclineX100_GearRatio| App
@@ -221,7 +221,7 @@ Collect, display, and log:
 | Instant / avg / max power (W) | Hub `0x03`, FTMS Indoor Bike Data, CPS |
 | Cadence (rpm) | Hub / FTMS |
 | Speed (km/h) | Hub virtual speed vs FTMS wheel speed (expose both if they differ) |
-| Heart rate | Trainer bridge, BLE HRM `0x180D`, or VirtualCog Watch (HealthKit → BLE peripheral) |
+| Heart rate | Trainer bridge, BLE HRM `0x180D`, or VirtualCog Watch (HealthKit → Watch central writes to Mac ingest peripheral) |
 | Grade % | Course engine → Hub/FTMS incline |
 | Virtual gear + ratio | GearModel + Hub PhysicalParam / query |
 | Trainer mode | SIM / ERG / Level |
@@ -326,7 +326,7 @@ This product is a training dashboard after pairing; keep each screen to one job.
 ### Phase 6 — Hardening
 
 - DirCon / Wi‑Fi transport
-- Direct HR strap pairing **and Apple Watch BLE HR** (Watch advertises `0x180D`; Mac is the central)
+- Direct HR strap pairing **and Apple Watch BLE HR** (Watch is the central; Mac advertises an ingest service because watchOS cannot be a BLE peripheral)
 - Simple ERG workout builder (ZWO-like intervals)
 - Firmware quirk matrix (Click encryption variants, CORE 2 Hub quirks)
 - BLE mock fixtures for CI without hardware
@@ -349,16 +349,16 @@ This product is a training dashboard after pairing; keep each screen to one job.
 
 ## Apple Watch pairing (live HR)
 
-Apple Watch **cannot** be paired to this Mac app as a stock heart-rate strap. It does not advertise Bluetooth SIG Heart Rate (`0x180D`), WatchConnectivity is Watch↔iPhone only, and macOS HealthKit is delayed iCloud sync.
+Apple Watch **cannot** advertise Bluetooth SIG Heart Rate (`0x180D`) — `CBPeripheralManager` is unavailable on watchOS. WatchConnectivity is Watch↔iPhone only, and macOS HealthKit is delayed iCloud sync.
 
-**What works:** the independent `VirtualCogWatch` target.
+**What works:** the `VirtualCogIOS` iPhone app with the `VirtualCogWatch` companion.
 
-1. Run **VirtualCogWatch** on a real Apple Watch (select your Development Team; HealthKit + Bluetooth).
-2. Tap **Broadcast HR**. The Watch starts an indoor cycling workout and advertises as **VirtualCog HR**.
-3. On Mac VirtualCog → Setup → Scan → Connect **VirtualCog HR**.
+1. Run **VirtualCog** on the Mac (it advertises a Watch ingest service automatically).
+2. Plug in the paired iPhone, select the **VirtualCogIOS** scheme, Run on the iPhone. Xcode installs the Watch app.
+3. On the Watch tap **Broadcast HR**. The Watch starts an indoor cycling workout and connects to VirtualCog on Mac. The iPhone app mirrors BPM.
 4. Keep the Watch app in the foreground / workout running. BPM overlays any trainer-bridged HR and is stored in FIT.
 
-The same Mac HRM client also pairs Polar / TICKR / Garmin straps. Third-party Watch apps that advertise `0x180D` can be used instead of VirtualCog Watch.
+The same Mac HRM client also pairs Polar / TICKR / Garmin straps via Scan. Third-party Watch apps that advertise `0x180D` from an iPhone relay can still be used as a standard HRM.
 
 ---
 

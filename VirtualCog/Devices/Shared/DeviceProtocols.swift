@@ -84,6 +84,7 @@ enum HeartRateSource: String, Equatable {
     }
 }
 
+@MainActor
 protocol TrainerControlling: AnyObject {
     var connectionState: ConnectionState { get }
     var lastTelemetry: LiveTelemetry { get }
@@ -95,6 +96,7 @@ protocol TrainerControlling: AnyObject {
     func requestControl()
 }
 
+@MainActor
 protocol ShifterControlling: AnyObject {
     var connectionState: ConnectionState { get }
     var onShift: ((ClickDebouncer.Event) -> Void)? { get set }

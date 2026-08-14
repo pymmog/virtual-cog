@@ -31,14 +31,10 @@ private struct PairingContent: View {
                         devices: app.ble.discoveredClicks,
                         connect: { app.ble.connectClick(id: $0) }
                     )
-                    deviceColumn(
-                        title: "Heart rate",
-                        devices: app.ble.discoveredHeartRateMonitors,
-                        connect: { app.ble.connectHeartRate(id: $0) }
-                    )
+                    heartRateColumn()
                 }
 
-                Text("Apple Watch does not advertise heart rate to Mac by itself. Open VirtualCog HR on the Watch, tap Broadcast HR, then Scan and Connect “VirtualCog HR” here. Chest straps (Polar, TICKR, Garmin) pair the same way via BLE 0x180D.")
+                Text("Apple Watch cannot advertise the Heart Rate Profile. Keep this Mac app open — it listens for VirtualCog HR automatically — then tap Broadcast HR on the Watch. Chest straps (Polar, TICKR, Garmin) still pair via Scan as BLE 0x180D.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
 
@@ -113,6 +109,69 @@ private struct PairingContent: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func heartRateColumn() -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Heart rate")
+                .font(.headline)
+
+            if !app.ble.useMocks {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Apple Watch")
+                        Text(watchIngestDetail)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    if app.ble.watchIngest.watchConnected || app.ble.heartRate.deviceName == HeartRateUUID.watchAdvertisedName {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                    }
+                }
+                .padding(10)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+            }
+
+            let straps = app.ble.discoveredHeartRateMonitors
+            if straps.isEmpty {
+                Text(app.ble.useMocks ? "No devices yet — press Scan." : "Chest straps appear after Scan.")
+                    .foregroundStyle(.secondary)
+            } else {
+                ForEach(straps) { device in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(device.name)
+                            Text("RSSI \(device.rssi) dBm")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Button("Connect") { app.ble.connectHeartRate(id: device.id) }
+                    }
+                    .padding(10)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var watchIngestDetail: String {
+        if let error = app.ble.watchIngest.lastError {
+            return error
+        }
+        if app.ble.watchIngest.watchConnected || app.ble.heartRate.deviceName == HeartRateUUID.watchAdvertisedName {
+            if let bpm = app.ble.heartRate.lastBpm {
+                return "Connected · \(bpm) bpm"
+            }
+            return "Watch connected"
+        }
+        if app.ble.watchIngest.isAdvertising {
+            return "Listening — tap Broadcast HR on the Watch"
+        }
+        return "Starting Bluetooth…"
     }
 }
 

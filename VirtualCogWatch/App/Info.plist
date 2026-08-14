@@ -22,16 +22,18 @@
 	<string>1</string>
 	<key>WKApplication</key>
 	<true/>
-	<key>WKWatchOnly</key>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>app.virtualcog.client.ios</string>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>VirtualCog reads live heart rate from Apple Watch so the Mac training app can log it during indoor rides.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>VirtualCog starts an indoor cycling workout on Apple Watch to keep live heart rate streaming while you ride.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>VirtualCog broadcasts heart rate over Bluetooth so the Mac app can pair like a standard heart-rate strap.</string>
+	<string>VirtualCog sends live heart rate to the Mac training app over Bluetooth.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>VirtualCog broadcasts heart rate over Bluetooth so the Mac app can pair like a standard heart-rate strap.</string>
+	<string>VirtualCog sends live heart rate to the Mac training app over Bluetooth.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>workout-processing</string>

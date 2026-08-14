@@ -98,7 +98,7 @@ final class ZwiftClickCrypto {
         guard let keys else { throw CryptoSessionError.notReady }
         let counter = txCounter
         txCounter &+= 1
-        var counterBytes: [UInt8] = [
+        let counterBytes: [UInt8] = [
             UInt8(counter & 0xFF),
             UInt8((counter >> 8) & 0xFF),
             UInt8((counter >> 16) & 0xFF),

@@ -14,6 +14,7 @@ final class BleManager: NSObject, ObservableObject {
     let kickrFtms: KickrFtmsClient
     let click: ClickClient
     let heartRate: HeartRateClient
+    let watchIngest: HeartRateIngestPeripheral
     let useMocks: Bool
 
     private var central: CBCentralManager?
@@ -30,15 +31,18 @@ final class BleManager: NSObject, ObservableObject {
         self.kickrFtms = KickrFtmsClient()
         self.click = ClickClient()
         self.heartRate = HeartRateClient()
+        self.watchIngest = HeartRateIngestPeripheral()
         super.init()
         trainerRouter.ftms = kickrFtms
         trainerRouter.hub = kickrHub
         clickRouter.click = click
         heartRateRouter.heartRate = heartRate
+        watchIngest.attach(heartRate: heartRate)
         kickrHub.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         kickrFtms.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         click.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         heartRate.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
+        watchIngest.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
         if useMocks {
             bluetoothState = .poweredOn
         } else {
@@ -47,6 +51,7 @@ final class BleManager: NSObject, ObservableObject {
             kickrFtms.attach(manager: self)
             click.attach(manager: self)
             heartRate.attach(manager: self)
+            watchIngest.start()
         }
     }
 

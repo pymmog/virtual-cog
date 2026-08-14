@@ -27,8 +27,8 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>VirtualCog connects to your KICKR CORE 2, Zwift Click, and heart-rate sensors (including VirtualCog HR on Apple Watch) over Bluetooth.</string>
+	<string>VirtualCog connects to your KICKR CORE 2, Zwift Click, and heart-rate sensors over Bluetooth, and accepts heart rate from VirtualCog HR on Apple Watch.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>VirtualCog connects to your KICKR CORE 2, Zwift Click, and heart-rate sensors (including VirtualCog HR on Apple Watch) over Bluetooth.</string>
+	<string>VirtualCog connects to your KICKR CORE 2, Zwift Click, and heart-rate sensors over Bluetooth, and accepts heart rate from VirtualCog HR on Apple Watch.</string>
 </dict>
 </plist>

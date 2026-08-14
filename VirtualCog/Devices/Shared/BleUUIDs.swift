@@ -44,15 +44,23 @@ enum FTMSUUID {
     static let userData: UInt16 = 0x181C
 }
 
-/// Bluetooth SIG Heart Rate Profile (used by chest straps and VirtualCog Watch).
+/// Bluetooth SIG Heart Rate Profile (chest straps) plus the Watch↔Mac ingest service.
 enum HeartRateUUID {
     static let service: UInt16 = 0x180D
     static let measurement: UInt16 = 0x2A37
     static let bodySensorLocation: UInt16 = 0x2A38
     static let controlPoint: UInt16 = 0x2A39
 
-    /// Advertised local name for the companion watchOS peripheral.
+    /// Display name when BPM is coming from VirtualCog Watch.
     static let watchAdvertisedName = "VirtualCog HR"
+
+    /// Local name the Mac advertises so Watch can find this app.
+    static let macAdvertisedName = "VirtualCog"
+
+    /// Custom GATT: watchOS cannot be a BLE peripheral (`CBPeripheralManager` is unavailable),
+    /// so Mac advertises and Watch (central) writes Heart Rate Measurement packets.
+    static let watchIngestService = "C0C01001-19CA-4651-86E5-FA29DCDD09D1"
+    static let watchIngestMeasurement = "C0C01002-19CA-4651-86E5-FA29DCDD09D1"
 
     static var serviceCBUUIDString: String { String(format: "%04X", service) }
     static var measurementCBUUIDString: String { String(format: "%04X", measurement) }

@@ -1,81 +1,80 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {};
+	classes = {
+	};
 	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14E76E48F0B7D0F262741FF3 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104CC0B38BE3DC4718CA12B /* AppModel.swift */; };
-		D11CD1BD21B2F6962484FED2 /* VirtualCogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */; };
-		0D70B4A1F7530F95327DD5BB /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDB9DB702044AD7803A081 /* BleManager.swift */; };
-		D48927E5F103D009D9F545E3 /* PeripheralDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */; };
-		FC50A3480C878C5B15E84F48 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E16A7C9060C9B3EB69096D /* GPXParser.swift */; };
-		57D00E02C1790860CE4CD603 /* ClickClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158558E3A0151D6E2F913FA6 /* ClickClient.swift */; };
-		EE661253DBBDB1EA8F9ED1F3 /* ZwiftClickCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */; };
-		3D37F8DC32F0AEB13F21655C /* DirConClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0884E10FD547D972C019339 /* DirConClient.swift */; };
-		C40DF0F2A9DE5EDEC7DE1BE1 /* FTMSCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */; };
-		B3D06847BC51F414DB718E91 /* KickrFtmsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */; };
-		353C8BF8D1A19FB981567395 /* KickrZwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33AF686D9322378D78554F /* KickrZwiftClient.swift */; };
-		5A31BA5B346E79C8556578EF /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
-		ED3979246A52E7BC33BBD225 /* DeviceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */; };
-		3C723167B6A1D76E6735E2BC /* ZwiftProtobuf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */; };
-		46567B53E34FC454BBDA9260 /* BleMockFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */; };
-		8AA35EF3235B32D36EA23E02 /* GearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA6E3F266BA257C314D688 /* GearModel.swift */; };
-		F20B6CB348453DA511DD835B /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */; };
-		CCC32C59A777DA6B672C022E /* RiderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */; };
-		33CFCF88C1E61915F495A4F9 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */; };
-		EEAD550DD2818A60479BBE58 /* TelemetryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */; };
-		9F8826930C3322335CAA391E /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D38849CFEA0FDC48C817EC /* CoursePicker.swift */; };
 		0149E655616E4658B2ABEC15 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937792F0E629ECF4FBD4E11F /* PairingView.swift */; };
-		7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E660CAF02E059FA057598 /* RideDashboard.swift */; };
-		E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54A05B8364AAFBA943F273 /* RootView.swift */; };
+		0D70B4A1F7530F95327DD5BB /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDB9DB702044AD7803A081 /* BleManager.swift */; };
+		14E76E48F0B7D0F262741FF3 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7104CC0B38BE3DC4718CA12B /* AppModel.swift */; };
+		2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */; };
+		33CFCF88C1E61915F495A4F9 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */; };
+		353C8BF8D1A19FB981567395 /* KickrZwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33AF686D9322378D78554F /* KickrZwiftClient.swift */; };
 		3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */; };
-		92B5E3D20C8F5E1B0D4F6C23 /* HeartRateCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */; };
+		3C723167B6A1D76E6735E2BC /* ZwiftProtobuf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */; };
+		3D37F8DC32F0AEB13F21655C /* DirConClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0884E10FD547D972C019339 /* DirConClient.swift */; };
+		46567B53E34FC454BBDA9260 /* BleMockFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */; };
+		57D00E02C1790860CE4CD603 /* ClickClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158558E3A0151D6E2F913FA6 /* ClickClient.swift */; };
+		5A31BA5B346E79C8556578EF /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
+		6407D2DDBF708DF13DE4A963 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 98499E54B5B7DB170C75555C /* SwiftProtobuf */; };
+		7F93AC1FD63CB0DEF9F4305A /* RideDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E660CAF02E059FA057598 /* RideDashboard.swift */; };
 		85E9B2C30D4F506B7C8D9E0A /* HeartRateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */; };
+		85E9B2C30D4F506B7C8D9E0B /* HeartRateIngestPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8A1B29C3E4F5A6B7C8DA0 /* HeartRateIngestPeripheral.swift */; };
+		8AA35EF3235B32D36EA23E02 /* GearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECA6E3F266BA257C314D688 /* GearModel.swift */; };
+		92B5E3D20C8F5E1B0D4F6C23 /* HeartRateCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */; };
+		9F8826930C3322335CAA391E /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D38849CFEA0FDC48C817EC /* CoursePicker.swift */; };
 		A3C6F4E31D906F2C1E507D34 /* HeartRateCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */; };
-		B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
 		B1C2D3E4F5061728394A5B02 /* VirtualCogWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B01 /* VirtualCogWatchApp.swift */; };
 		B1C2D3E4F5061728394A5B04 /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B03 /* WatchRootView.swift */; };
 		B1C2D3E4F5061728394A5B06 /* WatchHeartRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B05 /* WatchHeartRateModel.swift */; };
 		B1C2D3E4F5061728394A5B08 /* HeartRatePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B07 /* HeartRatePeripheral.swift */; };
+		B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */; };
 		B1C2D3E4F5061728394A5B0E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B0D /* HealthKit.framework */; };
-		2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */; };
-		6407D2DDBF708DF13DE4A963 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 98499E54B5B7DB170C75555C /* SwiftProtobuf */; };
+		B3D06847BC51F414DB718E91 /* KickrFtmsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */; };
+		C40DF0F2A9DE5EDEC7DE1BE1 /* FTMSCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */; };
+		CCC32C59A777DA6B672C022E /* RiderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */; };
+		D11CD1BD21B2F6962484FED2 /* VirtualCogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */; };
+		D48927E5F103D009D9F545E3 /* PeripheralDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */; };
+		E4A13BEB36FACD72B9302512 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54A05B8364AAFBA943F273 /* RootView.swift */; };
+		ED3979246A52E7BC33BBD225 /* DeviceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */; };
+		EE661253DBBDB1EA8F9ED1F3 /* ZwiftClickCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */; };
+		EEAD550DD2818A60479BBE58 /* TelemetryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */; };
+		F20B6CB348453DA511DD835B /* PhysicsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */; };
+		FC50A3480C878C5B15E84F48 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E16A7C9060C9B3EB69096D /* GPXParser.swift */; };
 		FCFE32D42BDA688221880A40 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52673E617F77A13755777685 /* CryptoSwift */; };
+		C1A2B3C4D5E6F708192A3B12 /* VirtualCogIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F708192A3B02 /* VirtualCogIOSApp.swift */; };
+		C1A2B3C4D5E6F708192A3B14 /* IOSRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F708192A3B03 /* IOSRootView.swift */; };
+		C1A2B3C4D5E6F708192A3B16 /* PhoneHeartRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F708192A3B04 /* PhoneHeartRateModel.swift */; };
+		C1A2B3C4D5E6F708192A3B18 /* PhoneWatchPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F708192A3B07 /* PhoneWatchPayload.swift */; };
+		C1A2B3C4D5E6F708192A3B19 /* PhoneWatchPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F708192A3B07 /* PhoneWatchPayload.swift */; };
+		C1A2B3C4D5E6F708192A3B20 /* VirtualCogWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5BF48AA40CAD7891EB709FC /* VirtualCog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCog.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7104CC0B38BE3DC4718CA12B /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogApp.swift; sourceTree = "<group>"; };
-		36BDB9DB702044AD7803A081 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
-		FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegateRouter.swift; sourceTree = "<group>"; };
-		21E16A7C9060C9B3EB69096D /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
+		02D576DC28D304B8B0FA938F /* VirtualCog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCog.entitlements; sourceTree = "<group>"; };
+		0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "demo-hills.gpx"; sourceTree = "<group>"; };
+		0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
 		158558E3A0151D6E2F913FA6 /* ClickClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickClient.swift; sourceTree = "<group>"; };
-		2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftClickCrypto.swift; sourceTree = "<group>"; };
-		C0884E10FD547D972C019339 /* DirConClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirConClient.swift; sourceTree = "<group>"; };
-		D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMSCodec.swift; sourceTree = "<group>"; };
-		C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickrFtmsClient.swift; sourceTree = "<group>"; };
+		21E16A7C9060C9B3EB69096D /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
+		239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
 		2A33AF686D9322378D78554F /* KickrZwiftClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickrZwiftClient.swift; sourceTree = "<group>"; };
+		2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftClickCrypto.swift; sourceTree = "<group>"; };
+		36BDB9DB702044AD7803A081 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		51D38849CFEA0FDC48C817EC /* CoursePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePicker.swift; sourceTree = "<group>"; };
+		520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderSettings.swift; sourceTree = "<group>"; };
+		54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleMockFixtures.swift; sourceTree = "<group>"; };
+		5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
 		5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleUUIDs.swift; sourceTree = "<group>"; };
 		666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocols.swift; sourceTree = "<group>"; };
-		EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftProtobuf.swift; sourceTree = "<group>"; };
-		54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleMockFixtures.swift; sourceTree = "<group>"; };
-		CECA6E3F266BA257C314D688 /* GearModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearModel.swift; sourceTree = "<group>"; };
-		0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsEngine.swift; sourceTree = "<group>"; };
-		520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderSettings.swift; sourceTree = "<group>"; };
-		239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
-		5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryStore.swift; sourceTree = "<group>"; };
-		51D38849CFEA0FDC48C817EC /* CoursePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePicker.swift; sourceTree = "<group>"; };
-		937792F0E629ECF4FBD4E11F /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
-		FE7E660CAF02E059FA057598 /* RideDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDashboard.swift; sourceTree = "<group>"; };
-		BF54A05B8364AAFBA943F273 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITEncoder.swift; sourceTree = "<group>"; };
-		0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = demo-hills.gpx; sourceTree = "<group>"; };
-		02D576DC28D304B8B0FA938F /* VirtualCog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCog.entitlements; sourceTree = "<group>"; };
-		81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateCodec.swift; sourceTree = "<group>"; };
+		6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogApp.swift; sourceTree = "<group>"; };
+		7104CC0B38BE3DC4718CA12B /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateClient.swift; sourceTree = "<group>"; };
+		74D8A1B29C3E4F5A6B7C8DA0 /* HeartRateIngestPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateIngestPeripheral.swift; sourceTree = "<group>"; };
+		81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateCodec.swift; sourceTree = "<group>"; };
+		937792F0E629ECF4FBD4E11F /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5061728394A5B01 /* VirtualCogWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogWatchApp.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5061728394A5B03 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5061728394A5B05 /* WatchHeartRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHeartRateModel.swift; sourceTree = "<group>"; };
@@ -84,6 +83,23 @@
 		B1C2D3E4F5061728394A5B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C2D3E4F5061728394A5B0D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITEncoder.swift; sourceTree = "<group>"; };
+		BF54A05B8364AAFBA943F273 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		C0884E10FD547D972C019339 /* DirConClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirConClient.swift; sourceTree = "<group>"; };
+		C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KickrFtmsClient.swift; sourceTree = "<group>"; };
+		CECA6E3F266BA257C314D688 /* GearModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearModel.swift; sourceTree = "<group>"; };
+		D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMSCodec.swift; sourceTree = "<group>"; };
+		EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZwiftProtobuf.swift; sourceTree = "<group>"; };
+		F5BF48AA40CAD7891EB709FC /* VirtualCog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegateRouter.swift; sourceTree = "<group>"; };
+		FE7E660CAF02E059FA057598 /* RideDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDashboard.swift; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B01 /* VirtualCogIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCogIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A2B3C4D5E6F708192A3B02 /* VirtualCogIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCogIOSApp.swift; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B03 /* IOSRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSRootView.swift; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B04 /* PhoneHeartRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHeartRateModel.swift; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B06 /* VirtualCogIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCogIOS.entitlements; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F708192A3B07 /* PhoneWatchPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWatchPayload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,23 +120,125 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1A2B3C4D5E6F708192A3C02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0218C7B9BED22D7F8483F820 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		03914D4EB8E40AA0E4B3D918 /* Kickr */ = {
+			isa = PBXGroup;
+			children = (
+				C0884E10FD547D972C019339 /* DirConClient.swift */,
+				D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */,
+				C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */,
+				2A33AF686D9322378D78554F /* KickrZwiftClient.swift */,
+			);
+			path = Kickr;
+			sourceTree = "<group>";
+		};
+		079F01EA1A405C2E9ACD446C /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				CECA6E3F266BA257C314D688 /* GearModel.swift */,
+				0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+		0AF13B16B63557CFA5DE8FC0 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				21E16A7C9060C9B3EB69096D /* GPXParser.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		0E8B77A02ECF0F7CB8B4E48E /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				398E7B618FDE364B4C7D29ED /* Click */,
+				B1C2D3E4F5061728394A5E06 /* HeartRate */,
+				03914D4EB8E40AA0E4B3D918 /* Kickr */,
+				6E27D8A1593D0DD97AAAE181 /* Shared */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 		2B731CEFC6751AAE0EC69B98 = {
 			isa = PBXGroup;
 			children = (
 				9921AA109753A2EE5E3AF1FA /* VirtualCog */,
+				C1A2B3C4D5E6F708192A3E01 /* VirtualCogIOS */,
 				B1C2D3E4F5061728394A5E01 /* VirtualCogWatch */,
+				C1A2B3C4D5E6F708192A3E05 /* SharedPhoneWatch */,
 				B1C2D3E4F5061728394A5E07 /* Frameworks */,
 				86024CAD1E83101D97359D73 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		398E7B618FDE364B4C7D29ED /* Click */ = {
+			isa = PBXGroup;
+			children = (
+				158558E3A0151D6E2F913FA6 /* ClickClient.swift */,
+				2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */,
+			);
+			path = Click;
+			sourceTree = "<group>";
+		};
+		44A7D95215B0E98A5A7A53B1 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		6095027EC2E78BC9BF506E5D /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */,
+				239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		6E27D8A1593D0DD97AAAE181 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */,
+				666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */,
+				81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */,
+				EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		731B8D4BE752C93FC598210E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		86024CAD1E83101D97359D73 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				F5BF48AA40CAD7891EB709FC /* VirtualCog.app */,
+				C1A2B3C4D5E6F708192A3B01 /* VirtualCogIOS.app */,
 				B1C2D3E4F5061728394A5B0B /* VirtualCogWatch.app */,
 			);
 			name = Products;
@@ -132,14 +250,6 @@
 				0218C7B9BED22D7F8483F820 /* Courses */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		0218C7B9BED22D7F8483F820 /* Courses */ = {
-			isa = PBXGroup;
-			children = (
-				0C70FF8CEC64DE673CFA20CC /* demo-hills.gpx */,
-			);
-			path = Courses;
 			sourceTree = "<group>";
 		};
 		9921AA109753A2EE5E3AF1FA /* VirtualCog */ = {
@@ -168,51 +278,6 @@
 				6EE6E0DD8E15169079877627 /* VirtualCogApp.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		B2E4674AE1C5B77C8FFECB66 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				36BDB9DB702044AD7803A081 /* BleManager.swift */,
-				FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */,
-			);
-			path = BLE;
-			sourceTree = "<group>";
-		};
-		0AF13B16B63557CFA5DE8FC0 /* Course */ = {
-			isa = PBXGroup;
-			children = (
-				21E16A7C9060C9B3EB69096D /* GPXParser.swift */,
-			);
-			path = Course;
-			sourceTree = "<group>";
-		};
-		0E8B77A02ECF0F7CB8B4E48E /* Devices */ = {
-			isa = PBXGroup;
-			children = (
-				398E7B618FDE364B4C7D29ED /* Click */,
-				B1C2D3E4F5061728394A5E06 /* HeartRate */,
-				03914D4EB8E40AA0E4B3D918 /* Kickr */,
-				6E27D8A1593D0DD97AAAE181 /* Shared */,
-			);
-			path = Devices;
-			sourceTree = "<group>";
-		};
-		398E7B618FDE364B4C7D29ED /* Click */ = {
-			isa = PBXGroup;
-			children = (
-				158558E3A0151D6E2F913FA6 /* ClickClient.swift */,
-				2DF7DB78FCBB89AC4B6C7345 /* ZwiftClickCrypto.swift */,
-			);
-			path = Click;
-			sourceTree = "<group>";
-		};
-		B1C2D3E4F5061728394A5E06 /* HeartRate */ = {
-			isa = PBXGroup;
-			children = (
-				74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */,
-			);
-			path = HeartRate;
 			sourceTree = "<group>";
 		};
 		B1C2D3E4F5061728394A5E01 /* VirtualCogWatch */ = {
@@ -260,6 +325,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		B1C2D3E4F5061728394A5E06 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				74D8A1B29C3E4F5A6B7C8D9E /* HeartRateClient.swift */,
+				74D8A1B29C3E4F5A6B7C8DA0 /* HeartRateIngestPeripheral.swift */,
+			);
+			path = HeartRate;
+			sourceTree = "<group>";
+		};
 		B1C2D3E4F5061728394A5E07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,60 +342,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		03914D4EB8E40AA0E4B3D918 /* Kickr */ = {
+		B2E4674AE1C5B77C8FFECB66 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				C0884E10FD547D972C019339 /* DirConClient.swift */,
-				D86BA0B325D8A3E42FFDA824 /* FTMSCodec.swift */,
-				C83B8E9AB0EF865C1FD38BA5 /* KickrFtmsClient.swift */,
-				2A33AF686D9322378D78554F /* KickrZwiftClient.swift */,
+				36BDB9DB702044AD7803A081 /* BleManager.swift */,
+				FCB76333B1075EB791A86048 /* PeripheralDelegateRouter.swift */,
 			);
-			path = Kickr;
-			sourceTree = "<group>";
-		};
-		6E27D8A1593D0DD97AAAE181 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				5E8E63AD1D7AC6E38ADFD574 /* BleUUIDs.swift */,
-				666F123C0B2601AFD71C4578 /* DeviceProtocols.swift */,
-				81A4F2C19B7E4D0A9C3E5B12 /* HeartRateCodec.swift */,
-				EF5DB63842BCCA1B97E2A387 /* ZwiftProtobuf.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		731B8D4BE752C93FC598210E /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				54E4D68EE68D8960BB437D53 /* BleMockFixtures.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		079F01EA1A405C2E9ACD446C /* Physics */ = {
-			isa = PBXGroup;
-			children = (
-				CECA6E3F266BA257C314D688 /* GearModel.swift */,
-				0ED0C8A9F8583A5321C2A173 /* PhysicsEngine.swift */,
-			);
-			path = Physics;
-			sourceTree = "<group>";
-		};
-		6095027EC2E78BC9BF506E5D /* Session */ = {
-			isa = PBXGroup;
-			children = (
-				520AABC8D9F3D9A0302E4FE9 /* RiderSettings.swift */,
-				239735FFF9B03B44EF3F06B1 /* SessionCoordinator.swift */,
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
-		F6D7C2AA488D84981CA8C5F1 /* Telemetry */ = {
-			isa = PBXGroup;
-			children = (
-				5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */,
-			);
-			path = Telemetry;
+			path = BLE;
 			sourceTree = "<group>";
 		};
 		B544E797E268F397B018F0E7 /* UI */ = {
@@ -335,12 +362,56 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		44A7D95215B0E98A5A7A53B1 /* Workout */ = {
+		C1A2B3C4D5E6F708192A3E01 /* VirtualCogIOS */ = {
 			isa = PBXGroup;
 			children = (
-				B2F6970BE4D5459E11CBC548 /* FITEncoder.swift */,
+				C1A2B3C4D5E6F708192A3E02 /* App */,
+				C1A2B3C4D5E6F708192A3E04 /* HeartRate */,
+				C1A2B3C4D5E6F708192A3E03 /* UI */,
 			);
-			path = Workout;
+			path = VirtualCogIOS;
+			sourceTree = "<group>";
+		};
+		C1A2B3C4D5E6F708192A3E02 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2B3C4D5E6F708192A3B05 /* Info.plist */,
+				C1A2B3C4D5E6F708192A3B06 /* VirtualCogIOS.entitlements */,
+				C1A2B3C4D5E6F708192A3B02 /* VirtualCogIOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C1A2B3C4D5E6F708192A3E03 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2B3C4D5E6F708192A3B03 /* IOSRootView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C1A2B3C4D5E6F708192A3E04 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2B3C4D5E6F708192A3B04 /* PhoneHeartRateModel.swift */,
+			);
+			path = HeartRate;
+			sourceTree = "<group>";
+		};
+		C1A2B3C4D5E6F708192A3E05 /* SharedPhoneWatch */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2B3C4D5E6F708192A3B07 /* PhoneWatchPayload.swift */,
+			);
+			path = SharedPhoneWatch;
+			sourceTree = "<group>";
+		};
+		F6D7C2AA488D84981CA8C5F1 /* Telemetry */ = {
+			isa = PBXGroup;
+			children = (
+				5BFABC5B370F48C5B1D91FBC /* TelemetryStore.swift */,
+			);
+			path = Telemetry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,8 +425,10 @@
 				4F6F5CC3FCCF73F75AE9CCF4 /* Frameworks */,
 				55B558C7EF820E6E00E5993B /* Resources */,
 			);
-			buildRules = ();
-			dependencies = ();
+			buildRules = (
+			);
+			dependencies = (
+			);
 			name = VirtualCog;
 			packageProductDependencies = (
 				98499E54B5B7DB170C75555C /* SwiftProtobuf */,
@@ -363,6 +436,25 @@
 			);
 			productName = VirtualCog;
 			productReference = F5BF48AA40CAD7891EB709FC /* VirtualCog.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1A2B3C4D5E6F708192A3C00 /* VirtualCogIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A2B3C4D5E6F708192A3D03 /* Build configuration list for PBXNativeTarget "VirtualCogIOS" */;
+			buildPhases = (
+				C1A2B3C4D5E6F708192A3C01 /* Sources */,
+				C1A2B3C4D5E6F708192A3C02 /* Frameworks */,
+				C1A2B3C4D5E6F708192A3C03 /* Resources */,
+				C1A2B3C4D5E6F708192A3C04 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A2B3C4D5E6F708192A3B21 /* PBXTargetDependency */,
+			);
+			name = VirtualCogIOS;
+			productName = VirtualCogIOS;
+			productReference = C1A2B3C4D5E6F708192A3B01 /* VirtualCogIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B1C2D3E4F5061728394A5C00 /* VirtualCogWatch */ = {
@@ -387,12 +479,19 @@
 /* Begin PBXProject section */
 		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
 			isa = PBXProject;
-			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1500; LastUpgradeCheck = 1500; };
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2660;
+			};
 			buildConfigurationList = 2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
-			knownRegions = (en, Base,);
+			knownRegions = (
+				en,
+				Base,
+			);
 			mainGroup = 2B731CEFC6751AAE0EC69B98;
 			packageReferences = (
 				0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
@@ -403,6 +502,7 @@
 			projectRoot = "";
 			targets = (
 				42AEFBAE01D2DFD981F7DA7D /* VirtualCog */,
+				C1A2B3C4D5E6F708192A3C00 /* VirtualCogIOS */,
 				B1C2D3E4F5061728394A5C00 /* VirtualCogWatch */,
 			);
 		};
@@ -412,7 +512,9 @@
 		55B558C7EF820E6E00E5993B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */,);
+			files = (
+				2CB23A5B1FB86AB8D4511669 /* demo-hills.gpx in Resources */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B1C2D3E4F5061728394A5C03 /* Resources */ = {
@@ -422,9 +524,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1A2B3C4D5E6F708192A3C03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C1A2B3C4D5E6F708192A3C04 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C1A2B3C4D5E6F708192A3B20 /* VirtualCogWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXContainerItemProxy section */
+		C1A2B3C4D5E6F708192A3B22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1C2D3E4F5061728394A5C00;
+			remoteInfo = VirtualCogWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		C1A2B3C4D5E6F708192A3B21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1C2D3E4F5061728394A5C00 /* VirtualCogWatch */;
+			targetProxy = C1A2B3C4D5E6F708192A3B22 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXSourcesBuildPhase section */
+		B1C2D3E4F5061728394A5C01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1C2D3E4F5061728394A5B02 /* VirtualCogWatchApp.swift in Sources */,
+				B1C2D3E4F5061728394A5B04 /* WatchRootView.swift in Sources */,
+				B1C2D3E4F5061728394A5B06 /* WatchHeartRateModel.swift in Sources */,
+				B1C2D3E4F5061728394A5B08 /* HeartRatePeripheral.swift in Sources */,
+				A3C6F4E31D906F2C1E507D34 /* HeartRateCodec.swift in Sources */,
+				B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */,
+				C1A2B3C4D5E6F708192A3B19 /* PhoneWatchPayload.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2AB5FB218DA8B84623F4557 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,34 +611,93 @@
 				3A84853D946835B62F11C5B2 /* FITEncoder.swift in Sources */,
 				92B5E3D20C8F5E1B0D4F6C23 /* HeartRateCodec.swift in Sources */,
 				85E9B2C30D4F506B7C8D9E0A /* HeartRateClient.swift in Sources */,
+				85E9B2C30D4F506B7C8D9E0B /* HeartRateIngestPeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B1C2D3E4F5061728394A5C01 /* Sources */ = {
+		C1A2B3C4D5E6F708192A3C01 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1C2D3E4F5061728394A5B02 /* VirtualCogWatchApp.swift in Sources */,
-				B1C2D3E4F5061728394A5B04 /* WatchRootView.swift in Sources */,
-				B1C2D3E4F5061728394A5B06 /* WatchHeartRateModel.swift in Sources */,
-				B1C2D3E4F5061728394A5B08 /* HeartRatePeripheral.swift in Sources */,
-				A3C6F4E31D906F2C1E507D34 /* HeartRateCodec.swift in Sources */,
-				B1C2D3E4F5061728394A5B0C /* BleUUIDs.swift in Sources */,
+				C1A2B3C4D5E6F708192A3B12 /* VirtualCogIOSApp.swift in Sources */,
+				C1A2B3C4D5E6F708192A3B14 /* IOSRootView.swift in Sources */,
+				C1A2B3C4D5E6F708192A3B16 /* PhoneHeartRateModel.swift in Sources */,
+				C1A2B3C4D5E6F708192A3B18 /* PhoneWatchPayload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		74C08D0A8F5E2B102E337550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = K65U27989T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCog/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
 		786310E230FDBED96D9BF785 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -495,58 +709,41 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		74C08D0A8F5E2B102E337550 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = VirtualCog/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		FEAFF9F934D6111D9F836A20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = VirtualCog/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -554,11 +751,13 @@
 		B1C2D3E4F5061728394A5D01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = VirtualCogWatch/App/VirtualCogWatch.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K65U27989T;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = VirtualCogWatch/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -566,11 +765,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.watch;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.ios.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
-				SUPPORTED_PLATFORMS = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -581,11 +780,13 @@
 		B1C2D3E4F5061728394A5D02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = VirtualCogWatch/App/VirtualCogWatch.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K65U27989T;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = VirtualCogWatch/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -593,11 +794,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.watch;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.ios.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
-				SUPPORTED_PLATFORMS = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -605,22 +806,161 @@
 			};
 			name = Release;
 		};
+		FEAFF9F934D6111D9F836A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCog/App/VirtualCog.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = K65U27989T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCog/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C1A2B3C4D5E6F708192A3D01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCogIOS/App/VirtualCogIOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K65U27989T;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCogIOS/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C1A2B3C4D5E6F708192A3D02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = VirtualCogIOS/App/VirtualCogIOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K65U27989T;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VirtualCogIOS/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.virtualcog.client.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (786310E230FDBED96D9BF785 /* Debug */, ADB4E0451F1E3639B1B8CE38 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
-		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {isa = XCConfigurationList; buildConfigurations = (74C08D0A8F5E2B102E337550 /* Debug */, FEAFF9F934D6111D9F836A20 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
-		B1C2D3E4F5061728394A5D03 /* Build configuration list for PBXNativeTarget "VirtualCogWatch" */ = {isa = XCConfigurationList; buildConfigurations = (B1C2D3E4F5061728394A5D01 /* Debug */, B1C2D3E4F5061728394A5D02 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+		2FA48CC5448B9AA6E69F0533 /* Build configuration list for PBXProject "VirtualCog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				786310E230FDBED96D9BF785 /* Debug */,
+				ADB4E0451F1E3639B1B8CE38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6C265C29914937403A2CD0B5 /* Build configuration list for PBXNativeTarget "VirtualCog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C08D0A8F5E2B102E337550 /* Debug */,
+				FEAFF9F934D6111D9F836A20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B1C2D3E4F5061728394A5D03 /* Build configuration list for PBXNativeTarget "VirtualCogWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1C2D3E4F5061728394A5D01 /* Debug */,
+				B1C2D3E4F5061728394A5D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C1A2B3C4D5E6F708192A3D03 /* Build configuration list for PBXNativeTarget "VirtualCogIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A2B3C4D5E6F708192A3D01 /* Debug */,
+				C1A2B3C4D5E6F708192A3D02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/apple/swift-protobuf.git"; requirement = {kind = upToNextMajorVersion; minimumVersion = 1.28.0; }; };
-		32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git"; requirement = {kind = upToNextMajorVersion; minimumVersion = 1.8.0; }; };
+		0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-protobuf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.28.0;
+			};
+		};
+		32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		98499E54B5B7DB170C75555C /* SwiftProtobuf */ = {isa = XCSwiftPackageProductDependency; package = 0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */; productName = SwiftProtobuf; };
-		52673E617F77A13755777685 /* CryptoSwift */ = {isa = XCSwiftPackageProductDependency; package = 32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */; productName = CryptoSwift; };
+		52673E617F77A13755777685 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32C34DA078873EBDE7186CB4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		98499E54B5B7DB170C75555C /* SwiftProtobuf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CE631FF24CBDB32D114EA42 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = SwiftProtobuf;
+		};
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;

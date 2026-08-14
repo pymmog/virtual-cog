@@ -1,7 +1,8 @@
 import CoreBluetooth
 import Foundation
 
-/// BLE Heart Rate Profile central (0x180D). Pairs chest straps and VirtualCog Watch.
+/// BLE Heart Rate Profile central (0x180D) for chest straps.
+/// VirtualCog Watch BPM is applied via `HeartRateIngestPeripheral`.
 @MainActor
 final class HeartRateClient: NSObject, ObservableObject {
     @Published private(set) var connectionState: ConnectionState = .idle
@@ -68,6 +69,34 @@ final class HeartRateClient: NSObject, ObservableObject {
         deviceName = nil
         bodySensorLocation = nil
         connectionState = .disconnected
+    }
+
+    /// Latest BPM from VirtualCog Watch. Ignored while a chest strap is connected.
+    func applyFromWatch(bpm: Int) {
+        guard !hasActiveStrap else { return }
+        deviceName = HeartRateUUID.watchAdvertisedName
+        bodySensorLocation = "Wrist"
+        apply(bpm: bpm)
+        connectionState = .ready
+    }
+
+    func watchDisconnected() {
+        guard !hasActiveStrap else { return }
+        guard deviceName == HeartRateUUID.watchAdvertisedName else { return }
+        lastBpm = nil
+        lastSampleAt = nil
+        deviceName = nil
+        bodySensorLocation = nil
+        connectionState = .disconnected
+    }
+
+    private var hasActiveStrap: Bool {
+        peripheral != nil && (
+            connectionState == .ready
+                || connectionState == .connected
+                || connectionState == .connecting
+                || connectionState == .reconnecting
+        )
     }
 
     func connectMock() {

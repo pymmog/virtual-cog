@@ -2,15 +2,20 @@ import Combine
 import CoreBluetooth
 import Foundation
 
-/// Watch-side BLE peripheral that advertises the standard Heart Rate Profile (0x180D).
+/// Watch-side BLE central that sends live BPM to VirtualCog on Mac.
+///
+/// watchOS cannot advertise (`CBPeripheralManager` / `CBMutableService` are unavailable),
+/// so the Watch scans for the Mac ingest service and writes Heart Rate Measurement packets.
+@MainActor
 final class HeartRatePeripheral: NSObject, ObservableObject {
     @Published private(set) var bluetoothState: CBManagerState = .unknown
     @Published private(set) var isAdvertising = false
     @Published private(set) var subscriberCount = 0
     @Published private(set) var lastError: String?
 
-    private var manager: CBPeripheralManager?
-    private var measurement: CBMutableCharacteristic?
+    private var manager: CBCentralManager?
+    private var mac: CBPeripheral?
+    private var measurement: CBCharacteristic?
     private var queuedStart = false
     private var lastPacket: Data?
 
@@ -20,97 +25,49 @@ final class HeartRatePeripheral: NSObject, ObservableObject {
         queuedStart = true
         lastError = nil
         if manager == nil {
-            manager = CBPeripheralManager(delegate: self, queue: .main)
+            manager = CBCentralManager(delegate: self, queue: .main)
         }
         if bluetoothState == .poweredOn {
-            beginAdvertising()
+            beginScanning()
         }
     }
 
     func stop() {
         queuedStart = false
-        manager?.stopAdvertising()
-        manager?.removeAllServices()
+        manager?.stopScan()
+        if let mac {
+            manager?.cancelPeripheralConnection(mac)
+        }
         isAdvertising = false
         subscriberCount = 0
         measurement = nil
         lastPacket = nil
+        self.mac = nil
     }
 
     func update(bpm: Int, contactDetected: Bool) {
         let packet = HeartRateMeasurement.notifyPacket(bpm: bpm, contactDetected: contactDetected)
         lastPacket = packet
-        guard let measurement, let manager, manager.state == .poweredOn else { return }
-        manager.updateValue(packet, for: measurement, onSubscribedCentrals: nil)
+        guard let mac, let measurement, mac.state == .connected else { return }
+        mac.writeValue(packet, for: measurement, type: .withoutResponse)
     }
 
-    private func beginAdvertising() {
+    private func beginScanning() {
         guard let manager, manager.state == .poweredOn else { return }
-        manager.removeAllServices()
-
-        let measurement = CBMutableCharacteristic(
-            type: CBUUID(string: HeartRateUUID.measurementCBUUIDString),
-            properties: [.notify, .read],
-            value: nil,
-            permissions: [.readable]
-        )
-        let location = CBMutableCharacteristic(
-            type: CBUUID(string: HeartRateUUID.bodySensorLocationCBUUIDString),
-            properties: [.read],
-            value: Data([HeartRateMeasurement.wristLocation]),
-            permissions: [.readable]
-        )
-        let service = CBMutableService(type: CBUUID(string: HeartRateUUID.serviceCBUUIDString), primary: true)
-        service.characteristics = [measurement, location]
-        self.measurement = measurement
-        manager.add(service)
-    }
-}
-
-extension HeartRatePeripheral: CBPeripheralManagerDelegate {
-    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        bluetoothState = peripheral.state
-        if peripheral.state == .poweredOn, queuedStart {
-            beginAdvertising()
-        } else if peripheral.state != .poweredOn {
-            isAdvertising = false
-            if queuedStart {
-                lastError = "Bluetooth unavailable (\(Self.label(for: peripheral.state)))"
-            }
-        }
-    }
-
-    func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        if let error {
-            lastError = error.localizedDescription
+        if let mac, mac.state == .connected || mac.state == .connecting {
             isAdvertising = false
             return
         }
-        peripheral.startAdvertising([
-            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: HeartRateUUID.serviceCBUUIDString)],
-            CBAdvertisementDataLocalNameKey: HeartRateUUID.watchAdvertisedName
-        ])
-    }
-
-    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
-        if let error {
-            lastError = error.localizedDescription
-            isAdvertising = false
-            return
-        }
+        manager.scanForPeripherals(
+            withServices: [CBUUID(string: HeartRateUUID.watchIngestService)],
+            options: [CBCentralManagerScanOptionAllowDuplicatesKey: false]
+        )
         isAdvertising = true
-        lastError = nil
     }
 
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        subscriberCount += 1
-        if let lastPacket, let measurement {
-            peripheral.updateValue(lastPacket, for: measurement, onSubscribedCentrals: [central])
-        }
-    }
-
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-        subscriberCount = max(0, subscriberCount - 1)
+    private func flushLastPacket() {
+        guard let lastPacket, let mac, let measurement, mac.state == .connected else { return }
+        mac.writeValue(lastPacket, for: measurement, type: .withoutResponse)
     }
 
     private static func label(for state: CBManagerState) -> String {
@@ -121,6 +78,115 @@ extension HeartRatePeripheral: CBPeripheralManagerDelegate {
         case .unsupported: return "unsupported"
         case .resetting: return "resetting"
         default: return "unknown"
+        }
+    }
+}
+
+extension HeartRatePeripheral: CBCentralManagerDelegate {
+    nonisolated func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        Task { @MainActor in
+            self.bluetoothState = central.state
+            if central.state == .poweredOn, self.queuedStart {
+                self.beginScanning()
+            } else if central.state != .poweredOn {
+                self.isAdvertising = false
+                if self.queuedStart {
+                    self.lastError = "Bluetooth unavailable (\(Self.label(for: central.state)))"
+                }
+            }
+        }
+    }
+
+    nonisolated func centralManager(
+        _ central: CBCentralManager,
+        didDiscover peripheral: CBPeripheral,
+        advertisementData: [String: Any],
+        rssi RSSI: NSNumber
+    ) {
+        Task { @MainActor in
+            guard self.queuedStart else { return }
+            if let existing = self.mac, existing.identifier == peripheral.identifier,
+               existing.state == .connected || existing.state == .connecting {
+                return
+            }
+            central.stopScan()
+            self.isAdvertising = false
+            self.mac = peripheral
+            peripheral.delegate = self
+            self.subscriberCount = 0
+            self.measurement = nil
+            central.connect(peripheral, options: nil)
+        }
+    }
+
+    nonisolated func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        Task { @MainActor in
+            guard self.mac?.identifier == peripheral.identifier else { return }
+            peripheral.discoverServices([CBUUID(string: HeartRateUUID.watchIngestService)])
+        }
+    }
+
+    nonisolated func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        Task { @MainActor in
+            guard self.mac?.identifier == peripheral.identifier else { return }
+            self.lastError = error?.localizedDescription ?? "Mac connection failed"
+            self.subscriberCount = 0
+            self.measurement = nil
+            if self.queuedStart {
+                self.beginScanning()
+            }
+        }
+    }
+
+    nonisolated func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        Task { @MainActor in
+            guard self.mac?.identifier == peripheral.identifier else { return }
+            self.subscriberCount = 0
+            self.measurement = nil
+            if self.queuedStart {
+                self.beginScanning()
+            }
+        }
+    }
+}
+
+extension HeartRatePeripheral: CBPeripheralDelegate {
+    nonisolated func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        Task { @MainActor in
+            if let error {
+                self.lastError = error.localizedDescription
+                return
+            }
+            guard self.mac?.identifier == peripheral.identifier,
+                  let service = peripheral.services?.first(where: {
+                      $0.uuid == CBUUID(string: HeartRateUUID.watchIngestService)
+                  })
+            else { return }
+            peripheral.discoverCharacteristics(
+                [CBUUID(string: HeartRateUUID.watchIngestMeasurement)],
+                for: service
+            )
+        }
+    }
+
+    nonisolated func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        Task { @MainActor in
+            if let error {
+                self.lastError = error.localizedDescription
+                return
+            }
+            guard self.mac?.identifier == peripheral.identifier else { return }
+            guard let char = service.characteristics?.first(where: {
+                $0.uuid == CBUUID(string: HeartRateUUID.watchIngestMeasurement)
+            }) else {
+                self.lastError = "Mac is missing the heart-rate characteristic."
+                return
+            }
+            self.measurement = char
+            peripheral.setNotifyValue(true, for: char)
+            self.subscriberCount = 1
+            self.lastError = nil
+            self.flushLastPacket()
         }
     }
 }

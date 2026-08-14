@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1C2D3E4F5061728394A5C00"
-               BuildableName = "VirtualCogWatch.app"
-               BlueprintName = "VirtualCogWatch"
+               BlueprintIdentifier = "C1A2B3C4D5E6F708192A3C00"
+               BuildableName = "VirtualCogIOS.app"
+               BlueprintName = "VirtualCogIOS"
                ReferencedContainer = "container:VirtualCog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +43,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1C2D3E4F5061728394A5C00"
-            BuildableName = "VirtualCogWatch.app"
-            BlueprintName = "VirtualCogWatch"
+            BlueprintIdentifier = "C1A2B3C4D5E6F708192A3C00"
+            BuildableName = "VirtualCogIOS.app"
+            BlueprintName = "VirtualCogIOS"
             ReferencedContainer = "container:VirtualCog.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +60,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1C2D3E4F5061728394A5C00"
-            BuildableName = "VirtualCogWatch.app"
-            BlueprintName = "VirtualCogWatch"
+            BlueprintIdentifier = "C1A2B3C4D5E6F708192A3C00"
+            BuildableName = "VirtualCogIOS.app"
+            BlueprintName = "VirtualCogIOS"
             ReferencedContainer = "container:VirtualCog.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

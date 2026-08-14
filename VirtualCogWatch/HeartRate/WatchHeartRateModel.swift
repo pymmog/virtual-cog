@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 import HealthKit
+import WatchConnectivity
 
 /// Starts an indoor cycling workout so watchOS delivers live heart rate, then pushes BPM to BLE.
 @MainActor
@@ -8,7 +9,7 @@ final class WatchHeartRateModel: NSObject, ObservableObject {
     @Published var bpm: Int?
     @Published var isBroadcasting = false
     @Published var status = "Idle"
-    @Published var detail = "Start broadcasting, then Connect VirtualCog HR on the Mac Setup tab."
+    @Published var detail = "Start broadcasting, then keep VirtualCog open on the Mac."
     @Published var subscriberCount = 0
     @Published var usingSimulatedHeartRate = false
 
@@ -29,6 +30,7 @@ final class WatchHeartRateModel: NSObject, ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        activatePhoneBridge()
     }
 
     var canBroadcast: Bool { HKHealthStore.isHealthDataAvailable() }
@@ -87,7 +89,8 @@ final class WatchHeartRateModel: NSObject, ObservableObject {
         usingSimulatedHeartRate = false
         subscriberCount = 0
         status = "Idle"
-        detail = "Start broadcasting, then Connect VirtualCog HR on the Mac Setup tab."
+        detail = "Start broadcasting, then keep VirtualCog open on the Mac."
+        pushToPhone()
     }
 
     private func requestAuthorization() async throws {
@@ -131,26 +134,49 @@ final class WatchHeartRateModel: NSObject, ObservableObject {
         syncPeripheralState()
     }
 
+    private func activatePhoneBridge() {
+        guard WCSession.isSupported() else { return }
+        let session = WCSession.default
+        session.delegate = self
+        session.activate()
+    }
+
+    private func pushToPhone() {
+        guard WCSession.isSupported(), WCSession.default.activationState == .activated else { return }
+        let payload = PhoneWatchPayload(
+            bpm: bpm,
+            status: status,
+            detail: detail,
+            isBroadcasting: isBroadcasting,
+            macConnected: peripheral.isMacConnected,
+            simulated: usingSimulatedHeartRate
+        ).asContext()
+        try? WCSession.default.updateApplicationContext(payload)
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(payload, replyHandler: nil, errorHandler: nil)
+        }
+    }
+
     private func syncPeripheralState() {
         subscriberCount = peripheral.subscriberCount
-        guard isBroadcasting else { return }
-        if let error = peripheral.lastError {
-            status = "Bluetooth error"
-            detail = error
-            return
+        if isBroadcasting {
+            if let error = peripheral.lastError {
+                status = "Bluetooth error"
+                detail = error
+            } else if peripheral.isMacConnected {
+                status = "Paired with Mac"
+                detail = usingSimulatedHeartRate
+                    ? "Sending simulated BPM (no live Health sample yet)."
+                    : "Streaming live heart rate over Bluetooth."
+            } else if peripheral.isAdvertising {
+                status = "Looking for Mac"
+                detail = "Keep VirtualCog open on the Mac. Chest straps still pair from Setup."
+            } else {
+                status = "Starting Bluetooth…"
+                detail = "Keep this app in the foreground."
+            }
         }
-        if peripheral.isMacConnected {
-            status = "Paired with Mac"
-            detail = usingSimulatedHeartRate
-                ? "Sending simulated BPM (no live Health sample yet)."
-                : "Streaming live heart rate over Bluetooth."
-        } else if peripheral.isAdvertising {
-            status = "Broadcasting"
-            detail = "On Mac: Setup → Scan → Connect “VirtualCog HR”."
-        } else {
-            status = "Starting Bluetooth…"
-            detail = "Keep this app in the foreground."
-        }
+        pushToPhone()
     }
 
     /// Watch Simulator (and some devices before the first optical sample) need a fallback BPM.
@@ -165,6 +191,18 @@ final class WatchHeartRateModel: NSObject, ObservableObject {
                 let base = self.bpm ?? 110
                 self.apply(bpm: max(80, base + Int.random(in: -1...1)), simulated: true)
             }
+        }
+    }
+}
+
+extension WatchHeartRateModel: WCSessionDelegate {
+    nonisolated func session(
+        _ session: WCSession,
+        activationDidCompleteWith activationState: WCSessionActivationState,
+        error: Error?
+    ) {
+        Task { @MainActor in
+            self.pushToPhone()
         }
     }
 }

@@ -129,7 +129,7 @@ private struct SettingsForm: View {
                     .foregroundStyle(.secondary)
             }
             Section("Heart rate") {
-                Text("Pair a BLE heart-rate monitor on the Setup tab, or run VirtualCog HR on Apple Watch and connect “VirtualCog HR”. Apple Watch does not expose live HR to Mac without that Watch app (HealthKit on Mac is iCloud-synced, not live).")
+                Text("Pair a BLE heart-rate monitor on the Setup tab, or run VirtualCog HR on Apple Watch while this Mac app is open. Apple Watch cannot advertise 0x180D; the Watch connects to VirtualCog instead.")
                     .foregroundStyle(.secondary)
             }
             Section("About") {
